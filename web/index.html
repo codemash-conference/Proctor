@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <style>
+        /* This helps the ng-show/ng-hide animations start at the right place. */
+        /* Since Angular has this but needs to load, this gives us the class early. */
+        .ng-hide { display: none!important; }
+    </style>
+    <title ng-bind="title">Proctor</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <base href="/">
+
+    <!-- Google Font - Roboto -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="../app/styles/pe-icons/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="../app/styles/pe-icons/helper.css" />
+    <link rel="stylesheet" href="../app/styles/stroke-icons/style.css" />
+
+    <!-- build:css styles/lib.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/app.css-->
+    <!-- inject:css -->
+
+    <link rel="stylesheet" href="/.tmp/styles.css">
+
+    <!-- endinject -->
+    <!-- endbuild -->
+</head>
+<body>
+    <div>
+        <div ng-include="'app/partial/shell/shell.html'"></div>
+    </div>
+
+    <!-- build:js js/lib.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/extras.angular.plus/ngplus-overlay.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/toastr/toastr.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+    <script src="bower_components/PACE/pace.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js js/app.js-->
+    <!-- inject:js -->
+    <script src="/app/app.module.js"></script>
+    <script src="/app/components/components.module.js"></script>
+    <script src="/app/directives/directive.module.js"></script>
+    <script src="/app/directives/widget-header/widgets.module.js"></script>
+    <script src="/app/partial/partial.module.js"></script>
+    <script src="/app/services/services.module.js"></script>
+    <script src="/app/directives/minimalizaMenu/minimalizaMenu.directive.js"></script>
+    <script src="/app/directives/nav-sidebar/ht-sidebar.directive.js"></script>
+    <script src="/app/directives/nav-sidebar/nav-sidebar.directive.js"></script>
+    <script src="/app/directives/pageTitle/pageTitle.directive.js"></script>
+    <script src="/app/directives/panelTools/panelTools.directive.js"></script>
+    <script src="/app/directives/widget-header/ht-widget-header.directive.js"></script>
+    <script src="/app/partial/404/404.route.js"></script>
+    <script src="/app/partial/admin/admin.controller.js"></script>
+    <script src="/app/partial/admin/admin.route.js"></script>
+    <script src="/app/partial/admin/groups.controller.js"></script>
+    <script src="/app/partial/dashboard/dashboard.controller.js"></script>
+    <script src="/app/partial/dashboard/dashboard.route.js"></script>
+    <script src="/app/partial/login/login.controller.js"></script>
+    <script src="/app/partial/login/login.route.js"></script>
+    <script src="/app/partial/responsibilities/responsibilities.controller.js"></script>
+    <script src="/app/partial/responsibilities/responsibilities.route.js"></script>
+    <script src="/app/partial/sales/sales.controller.js"></script>
+    <script src="/app/partial/sales/sales.route.js"></script>
+    <script src="/app/partial/shell/shell.controller.js"></script>
+    <script src="/app/services/auth-service/auth-interceptor-service.js"></script>
+    <script src="/app/services/auth-service/auth-service.js"></script>
+    <script src="/app/services/constants/constants.js"></script>
+    <script src="/app/services/data-service/dataservice.js"></script>
+    <script src="/app/services/exception/exception-handler.provider.js"></script>
+    <script src="/app/services/exception/exception.js"></script>
+    <script src="/app/services/global/global.js"></script>
+    <script src="/app/services/logger/logger.js"></script>
+    <script src="/app/services/sales/sales.service.js"></script>
+    <script src="/app/services/startup/config.js"></script>
+    <script src="/app/services/startup/state-change-handlers.js"></script>
+    <script src="/app/services/user/user.service.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:templates:js -->
+    <!-- endinject -->
+    <!-- endbuild -->
+</body>
+</html>

@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="widget wviolet">
+        <div ht-widget-header title="{{vm.title}}"></div>
+        <div class="widget-content user">
+            <h3>Sales Test</h3>
+            <p>{{vm.time}}</p>
+
+            <div id="ers" class="row">
+                <div class="col-sm-6 col-lg-4" ng-repeat="data in vm.salesData">
+                    <a ui-sref="reports.ers-details.time({ StoreNumber: data.storenumber, BusinessDate: vm.businessDate })">
+                        <section class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-9">
+                                        <strong>
+                                            <span class="fa fa-line-chart"></span>&nbsp;&nbsp;&nbsp;&nbsp;Store
+                                            {{data.storenumber}}:
+                                            {{data.city}}
+                                        </strong>
+                                    </div>
+                                    <div class="col-xs-12 col-md-3">
+                                        <div class="" style="white-space: nowrap">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-box">
+                                <table class="table" style="margin-bottom: 0;">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="size-h4">{{data.netsales}}</div>
+                                            <div class="text-muted hh-report-label">Sales</div>
+                                        </td>
+                                        <td>
+                                            <div class="size-h4">{{data.totalorders}}</div>
+                                            <div class="text-muted hh-report-label">Orders</div>
+                                        </td>
+                                        <td>
+                                            <div class="size-h4">{{data.deferredorders }}</div>
+                                            <div class="text-muted hh-report-label">Deferred Orders</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="size-h4">{{data.netsales / data.totalorders}}
+                                            </div>
+                                            <div class="text-muted hh-report-label">Average Ticket</div>
+                                        </td>
+                                        <td>
+                                            <div class="size-h4">{{data.voids}}</div>
+                                            <div class="text-muted hh-report-label">Voids</div>
+                                        </td>
+                                        <td>
+                                            <div class="size-h4">{{data.labor / data.netsales}}</div>
+                                            <div class="text-muted hh-report-label">Labor %</div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div
+                                    style="padding: 0 10px 5px 0; margin: 0; font-size: 6pt; line-height: 8px; border-top-width: 0; text-align: right; color: #000;">
+                                    Last Updated:{{data.lastordertime}}
+                                </div>
+
+                            </div>
+                        </section>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

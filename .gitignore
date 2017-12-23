@@ -1,0 +1,16 @@
+.DS_Store
+.idea
+.sublime-grunt.cache
+node_modules
+bower_components
+dist
+.tmp
+*.log
+*.css
+web/report
+build
+web/src/client/specs.html
+web/src/client/index.html
+*.orig
+*.zip
+web/config.xml
