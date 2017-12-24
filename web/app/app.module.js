@@ -6,7 +6,8 @@
         'app.partial',
         'app.services',
         'app.directives',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'ui.select'
     ]);
 
     app.run(function($rootScope, $state, localStorageService){

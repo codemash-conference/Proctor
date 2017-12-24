@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="view-header">
+            <div class="pull-right text-right" style="line-height: 14px">
+            </div>
+            <div class="header-icon">
+                <i class="pe page-header-icon pe-7s-users"></i>
+            </div>
+            <div class="header-title">
+                <h3>Roles</h3>
+                <small>
+                    Roles that users belong to...
+                </small>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-filled">
+            <div class="panel-heading">
+                <div panel-tools></div>
+                Role List
+            </div>
+            <div class="panel-body">
+                <div ng-repeat="role in vm.roles">
+                    <div ng-click="vm.selectRole(role)" ng-style="">{{role.name}}</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-6" ng-if="vm.currentRole" >
+        <div class="panel panel-filled">
+            <div class="panel-heading">
+                <div panel-tools></div>
+                Role Details
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="form-group"><label for="exampleInputName">Role Name</label> <input type="text"
+                                                                                                   ng-model="vm.currentRole.name"
+                                                                                                    class="form-control"
+                                                                                                    id="exampleInputName"
+                                                                                                    placeholder="Role Name">
+                    </div>
+                    <p>Users: </p>
+
+                    <ui-select multiple ng-model="vm.users" theme="bootstrap"
+                               on-select="vm.addUserToRole($item)"
+                               on-remove="vm.removeUserFromRole($item)">
+                        <ui-select-match placeholder="Select user...">{{$item.firstName}} {{$item.lastName}}</ui-select-match>
+                        <ui-select-choices repeat="user in vm.allUsers | filter:$select.search">
+                            {{user.firstName}} {{user.lastName}} ({{user.userName}})
+                        </ui-select-choices>
+                    </ui-select>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

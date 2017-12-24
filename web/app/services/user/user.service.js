@@ -5,7 +5,7 @@
         .module('app.services')
         .factory('userService', userService);
 
-    function userService($http, moment, localStorageService) {
+    function userService($http, moment, localStorageService, config) {
         var user = {
             username: localStorageService.get('userName'),
             loggedIn: localStorageService.get('loggedIn'),
@@ -18,11 +18,41 @@
         };
 
         var service = {
-            user: user
+            user: user,
+            getAllUsers: getAllUsers,
+            addUserToRole : addUserToRole,
+            removeUserFromRole : removeUserFromRole
         };
 
 
         return service;
 
+        function getAllUsers() {
+            var apiUrl = config.apiUrl + '/api/Users';
+
+            return $http.get(apiUrl)
+                .then(function(response){
+                    return response.data;
+                });
+
+        }
+
+        function addUserToRole(userId, roleId) {
+            var apiUrl = config.apiUrl + '/api/Role/AddUserToRole?userId=' + userId + '&roleId=' + roleId;
+
+            return $http.post(apiUrl)
+                .then(function(response){
+                    return response.data;
+                });
+        }
+
+        function removeUserFromRole(userId, roleId) {
+            var apiUrl = config.apiUrl + '/api/Role/AddUserToRole?userId=' + userId + '&roleId=' + roleId;
+
+            return $http.delete(apiUrl)
+                .then(function(response){
+                    return response.data;
+                });
+        }
     }
 })();

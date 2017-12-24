@@ -18,6 +18,6 @@
             link: 'http://twitter.com/john_papa'
         };
 
-        logger.success(config.appTitle + ' loaded!', null);
+        //logger.success(config.appTitle + ' loaded!', null);
     }
 })();

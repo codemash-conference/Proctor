@@ -5,7 +5,7 @@
         'app.directives',
         'app.services',
         'ngAnimate', 'ngSanitize',
-        'ui.router', 'ngplus', 'ui.bootstrap'
+        'ui.router', 'ngplus', 'ui.bootstrap','ui.select'
     ]);
 
 })();

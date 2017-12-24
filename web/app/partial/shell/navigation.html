@@ -1,0 +1,29 @@
+<!-- Navigation-->
+<aside class="navigation">
+    <nav ng-controller="NavigationController as vm">
+        <ul class="nav luna-nav">
+            <li class="nav-category">
+                Main
+            </li>
+            <li ng-repeat="r in vm.navRoutes"
+                ng-class="{active: $state.includes(r.name)}">
+
+                <a ui-sref="{{r.name}}" ng-bind-html="r.settings.content" ng-if="!r.abstract"
+                   ng-click="vm.menuSelect(r.name, vm.navSelected)"></a>
+
+                <a ng-click="vm.menuSelect(r.name, vm.navSelected)" ng-if="r.abstract">
+                    {{r.settings.content}}
+                    <span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
+                </a>
+                <ul class="nav nav-second" uib-collapse="vm.isSelected(r.name, vm.navSelected)" ng-if="r.abstract">
+                    <li ng-repeat="subnav in r.subnav" ui-sref-active="active">
+                        <a ui-sref="{{subnav.name}}" ng-bind-html="subnav.settings.content"></a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    </nav>
+</aside>
+<!-- End navigation-->
+

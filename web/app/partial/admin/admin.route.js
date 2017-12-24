@@ -14,23 +14,23 @@
                     settings: {
                         mainNavigation: true,
                         level: 0,
-                        ordinal: 2,
-                        content: '<i class="fa fa-lock"></i> Admin',
+                        ordinal: 7,
+                        content: 'Admin',
                         rolesAllowed: ['Admin']
                     }
                 })
-                .state('admin.groups', {
-                    url: '/groups',
-                    templateUrl: 'app/partial/admin/groups.html',
-                    controller: 'GroupsController',
+                .state('admin.roles', {
+                    url: '/roles',
+                    templateUrl: 'app/partial/admin/roles.html',
+                    controller: 'RolesController',
                     controllerAs: 'vm',
-                    title: 'Groups',
+                    title: 'Roles',
                     resolve: {},
                     settings: {
                         mainNavigation: true,
                         level: 1,
                         ordinal: 1,
-                        content: ' Groups',
+                        content: 'Roles',
                         rolesAllowed: ['Admin']
                     }
                 })
@@ -45,7 +45,7 @@
                         mainNavigation: true,
                         level: 1,
                         ordinal: 2,
-                        content: ' Users',
+                        content: 'Users',
                         rolesAllowed: ['Admin']
                     }
                 })
@@ -60,7 +60,7 @@
                         mainNavigation: true,
                         level: 1,
                         ordinal: 3,
-                        content: ' Schedule Admin',
+                        content: 'Schedule Admin',
                         rolesAllowed: ['Admin']
                     }
                 })
@@ -75,7 +75,7 @@
                         mainNavigation: true,
                         level: 1,
                         ordinal: 4,
-                        content: ' Static Schedule',
+                        content: 'Static Schedule',
                         rolesAllowed: ['Admin']
                     }
                 })
@@ -90,14 +90,14 @@
                         mainNavigation: true,
                         level: 1,
                         ordinal: 5,
-                        content: ' Helpers',
+                        content: 'Helpers',
                         rolesAllowed: ['Admin']
                     }
                 })
                 .state('admin.exportsessions', {
                     url: '/exportsessions',
                     templateUrl: 'app/partial/admin/exportsessions.html',
-                    controller: 'ExprtSessionsController',
+                    controller: 'ExportSessionsController',
                     controllerAs: 'vm',
                     title: 'Export Sessions',
                     resolve: {},
@@ -105,7 +105,7 @@
                         mainNavigation: true,
                         level: 1,
                         ordinal: 6,
-                        content: ' Export Sessions',
+                        content: 'Export Sessions',
                         rolesAllowed: ['Admin']
                     }
                 })
@@ -120,7 +120,7 @@
                         mainNavigation: true,
                         level: 1,
                         ordinal: 7,
-                        content: ' All Schedules',
+                        content: 'All Schedules',
                         rolesAllowed: ['Admin']
                     }
                 });

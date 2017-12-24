@@ -5,7 +5,9 @@
         <ht-widget-header></ht-widget-header>
 
         <!-- Navigation -->
-        <nav-sidebar></nav-sidebar>
+        <aside ng-include="'app/partial/shell/navigation.html'"
+               id="nav-container" class="navigation">
+        </aside>
 
 
         <section class="content">
@@ -15,19 +17,4 @@
         </section>
     </div>
 </div>
-<!--<div ng-controller="ShellController as vm">-->
-    <!--<header class="clearfix">-->
-        <!--<nav-header navline="vm.navline"></nav-header>-->
-    <!--</header>-->
-    <!--<section id="content" class="content">-->
-        <!--<nav-sidebar></nav-sidebar>-->
-        <!--<div ui-view class="shuffle-animation"></div>-->
-        <!--<div ngplus-overlay-->
-             <!--ngplus-overlay-delay-in="50"-->
-             <!--ngplus-overlay-delay-out="700"-->
-             <!--ngplus-overlay-animation="dissolve-animation">-->
-            <!--<img src="app/images/busy.gif"/>-->
-            <!--<div class="page-spinner-message overlay-message">{{vm.busyMessage}}</div>-->
-        <!--</div>-->
-    <!--</section>-->
-<!--</div>-->
+

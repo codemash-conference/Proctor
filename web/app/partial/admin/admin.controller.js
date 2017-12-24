@@ -14,7 +14,7 @@
         activate();
 
         function activate() {
-            logger.info('Activated Admin View');
+            //logger.info('Activated Admin View');
         }
     }
 })();

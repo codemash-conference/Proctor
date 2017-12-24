@@ -15,8 +15,8 @@
                     settings: {
                         mainNavigation: true,
                         level: 0,
-                        ordinal: 4,
-                        content: '<i class="fa fa-dashboard"></i> Responsibilities',
+                        ordinal: 2,
+                        content: 'Responsibilities',
                         rolesAllowed: ['Everyone']
                     }
                 });

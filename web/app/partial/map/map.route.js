@@ -5,18 +5,18 @@
         .module('app.partial')
         .config(function($stateProvider) {
             $stateProvider
-                .state('sales', {
-                    url: '/sales',
-                    templateUrl: 'app/partial/sales/sales.html',
-                    controller: 'SalesController',
+                .state('map', {
+                    url: '/map',
+                    templateUrl: 'app/partial/map/map.html',
+                    controller: 'MapController',
                     controllerAs: 'vm',
-                    title: 'Sales',
+                    title: 'Map',
                     resolve: {},
                     settings: {
                         mainNavigation: true,
                         level: 0,
                         ordinal: 3,
-                        content: '<i class="fa fa-dashboard"></i> Sales',
+                        content: 'Map',
                         rolesAllowed: ['Everyone']
                     }
                 });

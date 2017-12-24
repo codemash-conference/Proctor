@@ -16,7 +16,6 @@
             templateUrl: 'app/directives/nav-sidebar/nav-sidebar.html'
         };
 
-        /* @ngInject */
         function SidebarController($scope, $state, userService, $rootScope) {
             var vm = this;
             var states = $state.get();
@@ -65,7 +64,6 @@
             }
 
             function isSelected(navId, navSelected) {
-
                 var activeRoute = $rootScope.$state.current.name;
                 var separateRoutes = activeRoute.split('.');
 
@@ -83,9 +81,9 @@
 
             function menuSelect(selection, navSelected) {
                 if(selection === navSelected) {
-                    vm.navSelected = '';
+                    $scope.navSelected = '';
                 } else {
-                    vm.navSelected = selection;
+                    $scope.navSelected = selection;
                 }
 
             }
