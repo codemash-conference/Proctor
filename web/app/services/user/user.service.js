@@ -20,8 +20,12 @@
         var service = {
             user: user,
             getAllUsers: getAllUsers,
+            createUser: createUser,
+            updateUser: updateUser,
+            deleteUser: deleteUser,
             addUserToRole : addUserToRole,
-            removeUserFromRole : removeUserFromRole
+            removeUserFromRole : removeUserFromRole,
+            getNewUserObj: getNewUserObj
         };
 
 
@@ -53,6 +57,46 @@
                 .then(function(response){
                     return response.data;
                 });
+        }
+
+        function deleteUser(userId){
+            var apiUrl = config.apiUrl + '/api/Users/' + userId;
+
+            return $http.delete(apiUrl)
+                .then(function(response){
+                    return response.data;
+                });
+        }
+        function createUser(user) {
+            var apiUrl = config.apiUrl + '/api/Users';
+
+            return $http.post(apiUrl, user)
+                .then(function(response){
+                    return response;
+                });
+
+        }
+
+        function updateUser(user) {
+            var apiUrl = config.apiUrl + '/api/Users';
+
+            return $http.put(apiUrl, user)
+                .then(function(response){
+                    return response;
+                });
+        }
+
+        function getNewUserObj() {
+            return {
+                firstName: '',
+                lastName: '',
+                email: '',
+                cellNumber: '',
+                password: '',
+                userName: '',
+                EmailConfirmed: true,
+                IsActive: true
+            };
         }
     }
 })();

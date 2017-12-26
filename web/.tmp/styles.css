@@ -1441,7 +1441,7 @@ input[type="checkbox"] .styled:checked + label::after, input[type="radio"] .styl
 .modal-content .modal-header {
   border-color: #3d404c;
   background-color: #1d1f24;
-  padding: 40px 20px; }
+  padding: 10px 20px; }
 
 .modal-content .modal-header .close {
   color: #ffffff;
@@ -1450,16 +1450,16 @@ input[type="checkbox"] .styled:checked + label::after, input[type="radio"] .styl
   opacity: .2; }
 
 .modal-content .modal-body {
-  padding: 40px; }
+  padding: 20px; }
 
 .modal-content .modal-footer {
   border-color: #3d404c;
   background-color: #1d1f24;
-  padding: 20px; }
+  padding: 10px; }
 
 .modal-backdrop.in {
-  filter: alpha(opacity=10);
-  opacity: .1; }
+  filter: alpha(opacity=30);
+  opacity: .3; }
 
 h1, h2, h3, h4, h5, h6 {
   color: #FFFFFF; }
@@ -2330,6 +2330,47 @@ div.dt-button-info h2 {
 
 form label {
   line-height: 34px; }
+
+.scheduleAdminRoom {
+  width: 80px;
+  float: left;
+  background-color: #0C84A9;
+  position: relative;
+  border: solid 1px #fff; }
+
+.scheduleAdminSession {
+  width: 80px;
+  font-size: 8pt;
+  border: solid 1px #000;
+  position: absolute;
+  background-color: #0C84A9;
+  overflow: hidden;
+  cursor: pointer;
+  color: black; }
+
+.scheduleAdminSession.error {
+  background-color: red; }
+
+.scheduleAdminSession.ok {
+  background-color: green; }
+
+.datePicker {
+  border: solid 1px #FFF;
+  padding: 10px;
+  margin: 0px 10px;
+  float: left;
+  cursor: pointer; }
+
+.datePicker:hover {
+  color: #FFF;
+  background-color: #0C84A9; }
+
+.sessionRoom {
+  position: absolute;
+  top: 0px;
+  width: 80px;
+  font-size: 8pt;
+  overflow: hidden; }
 
 .responsibilitiesHeader {
   background-color: #F6A821;

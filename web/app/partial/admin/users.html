@@ -18,16 +18,68 @@
 </div>
 
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-md-12">
         <div class="panel panel-filled">
             <div class="panel-heading">
                 <div panel-tools></div>
-                Users
+                User Tools
             </div>
             <div class="panel-body">
-
+                <button type="button" class="btn btn-accent btn-sm" ng-click="vm.addUser()">
+                    <i class="pe pe-7s-add-user"></i> <span class="bold">Add User</span>
+                </button>&nbsp;
+                <button type="button" class="btn btn-accent btn-sm" ng-click="vm.importUsers()">
+                    <i class="fa fa-upload"></i> <span class="bold">Import Users</span>
+                </button>
             </div>
         </div>
+    </div>
+</div>
 
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-filled">
+            <div class="panel-heading">
+                <div panel-tools></div>
+                Edit Users
+            </div>
+            <div class="panel-body">
+                <p>
+                    Add, Update and delete users.
+                </p>
+                <div class="table-responsive">
+
+                    <table id="tableExample3"
+                           class="table table-striped table-hover"
+                           datatable="ng"
+                           dt-column-defs="vm.columns"
+                           dt-options="vm.dtOptions3">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Last</th>
+                            <th>First</th>
+                            <th>Email</th>
+                            <th>Cell</th>
+                            <th>Username</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="user in vm.users">
+                            <td>
+                                <button type="button" class="btn btn-danger btn-sm" ng-click="vm.deleteUser(user)"><i class="pe pe-7s-delete-user"></i> </button>
+                                <button type="button" class="btn btn-accent btn-sm" ng-click="vm.updateUser(user)"><i class="pe pe-7s-user"></i> </button>
+                            </td>
+                            <td>{{ user.lastName }}</td>
+                            <td>{{ user.firstName }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.cellNumber }}</td>
+                            <td>{{ user.userName }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -40,7 +40,11 @@
                     controller: 'UsersController',
                     controllerAs: 'vm',
                     title: 'Users',
-                    resolve: {},
+                    resolve: {
+                        users: function(userService) {
+                            return userService.getAllUsers();
+                        }
+                    },
                     settings: {
                         mainNavigation: true,
                         level: 1,

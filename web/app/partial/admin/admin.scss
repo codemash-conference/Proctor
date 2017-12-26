@@ -1,0 +1,47 @@
+.scheduleAdminRoom {
+    width: 80px;
+    float: left;
+    background-color: #0C84A9;
+    position: relative;
+    border: solid 1px #fff;
+}
+
+.scheduleAdminSession {
+    width: 80px;
+    font-size: 8pt;
+    border: solid 1px #000;
+    position: absolute;
+    background-color: #0C84A9;
+    overflow: hidden;
+    cursor: pointer;
+    color: black;
+}
+
+.scheduleAdminSession.error {
+    background-color: red;
+}
+
+.scheduleAdminSession.ok {
+    background-color: green;
+}
+
+.datePicker {
+    border: solid 1px #FFF;
+    padding: 10px;
+    margin: 0px 10px;
+    float: left;
+    cursor: pointer;
+}
+
+.datePicker:hover {
+    color: #FFF;
+    background-color: #0C84A9;
+}
+
+.sessionRoom {
+    position: absolute;
+    top: 0px;
+    width: 80px;
+    font-size: 8pt;
+    overflow: hidden;
+}

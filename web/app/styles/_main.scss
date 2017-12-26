@@ -1818,8 +1818,9 @@ input[type="checkbox"] .styled:checked + label::after, input[type="radio"] .styl
 .modal-content .modal-header {
     border-color: #3d404c;
     background-color: #1d1f24;
-    padding: 40px 20px
+    padding: 10px 20px
 }
+
 
 .modal-content .modal-header .close {
     color: #ffffff;
@@ -1829,18 +1830,18 @@ input[type="checkbox"] .styled:checked + label::after, input[type="radio"] .styl
 }
 
 .modal-content .modal-body {
-    padding: 40px
+    padding: 20px
 }
 
 .modal-content .modal-footer {
     border-color: #3d404c;
     background-color: #1d1f24;
-    padding: 20px
+    padding: 10px
 }
 
 .modal-backdrop.in {
-    filter: alpha(opacity=10);
-    opacity: .1
+    filter: alpha(opacity=30);
+    opacity: .3
 }
 
 h1, h2, h3, h4, h5, h6 {

@@ -7,7 +7,11 @@
         'app.services',
         'app.directives',
         'ui.bootstrap',
-        'ui.select'
+        'app.filters',
+        'ui.select',
+        'datatables',
+        'datatables.buttons',
+        'ngResource'
     ]);
 
     app.run(function($rootScope, $state, localStorageService){
