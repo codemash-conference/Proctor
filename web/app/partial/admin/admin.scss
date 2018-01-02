@@ -44,4 +44,27 @@
     width: 80px;
     font-size: 8pt;
     overflow: hidden;
+    background-color: #F6A821;
+    color: #FFFFFF;
+    text-align: center;
 }
+
+.scheduleDateHeader{
+    font-size: 14pt;
+    margin: 20px -3% 15px -3%;
+    padding: 3px 3%;
+}
+
+.scheduleTime{
+    color:#AAAAAA;
+}
+
+.scheduleSession{
+    font-size: smaller;
+    clear: both;
+}
+
+.scheduleTitle{
+    padding-left: 20px;
+}
+

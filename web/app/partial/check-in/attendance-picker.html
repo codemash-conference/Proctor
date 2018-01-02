@@ -1,0 +1,58 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="view-header">
+                    <div class="pull-right text-right" style="line-height: 14px">
+                    </div>
+                    <div class="header-icon">
+                        <i class="pe page-header-icon pe-7s-user"></i>
+                    </div>
+                    <div class="header-title">
+                        <h3>Session Attendance</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-filled">
+            <div class="panel-body">
+                <div class="hundredsContainer">
+                    <div class="numberButton {{vm.numberSelected(500)}}" ng-click="vm.pick(500)">500</div>
+                    <div class="numberButton {{vm.numberSelected(400)}}" ng-click="vm.pick(400)">400</div>
+                    <div class="numberButton {{vm.numberSelected(300)}}" ng-click="vm.pick(300)">300</div>
+                    <div class="numberButton {{vm.numberSelected(200)}}" ng-click="vm.pick(200)">200</div>
+                    <div class="numberButton {{vm.numberSelected(100)}}" ng-click="vm.pick(100)">100</div>
+                </div>
+                <div class="tensContainer">
+                    <div class="numberButton {{vm.numberSelected(90)}}" ng-click="vm.pick(90)">90</div>
+                    <div class="numberButton {{vm.numberSelected(80)}}" ng-click="vm.pick(80)">80</div>
+                    <div class="numberButton {{vm.numberSelected(70)}}" ng-click="vm.pick(70)">70</div>
+                    <div class="numberButton {{vm.numberSelected(60)}}" ng-click="vm.pick(60)">60</div>
+                    <div class="numberButton {{vm.numberSelected(50)}}" ng-click="vm.pick(50)">50</div>
+                    <div class="numberButton {{vm.numberSelected(40)}}" ng-click="vm.pick(40)">40</div>
+                    <div class="numberButton {{vm.numberSelected(30)}}" ng-click="vm.pick(30)">30</div>
+                    <div class="numberButton {{vm.numberSelected(20)}}" ng-click="vm.pick(20)">20</div>
+                    <div class="numberButton {{vm.numberSelected(10)}}" ng-click="vm.pick(10)">10</div>
+                </div>
+                <div class="onesContainer">
+                    <div class="numberButton {{vm.numberSelected(9)}}" ng-click="vm.pick(9)">9</div>
+                    <div class="numberButton {{vm.numberSelected(8)}}" ng-click="vm.pick(8)">8</div>
+                    <div class="numberButton {{vm.numberSelected(7)}}" ng-click="vm.pick(7)">7</div>
+                    <div class="numberButton {{vm.numberSelected(6)}}" ng-click="vm.pick(6)">6</div>
+                    <div class="numberButton {{vm.numberSelected(5)}}" ng-click="vm.pick(5)">5</div>
+                    <div class="numberButton {{vm.numberSelected(4)}}" ng-click="vm.pick(4)">4</div>
+                    <div class="numberButton {{vm.numberSelected(3)}}" ng-click="vm.pick(3)">3</div>
+                    <div class="numberButton {{vm.numberSelected(2)}}" ng-click="vm.pick(2)">2</div>
+                    <div class="numberButton {{vm.numberSelected(1)}}" ng-click="vm.pick(1)">1</div>
+                    <div class="numberButton {{vm.numberSelected(0)}}" ng-click="vm.pick(0)">0</div>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-accent" ng-click="vm.ok()">Save changes</button>
+    </div>
+</div>

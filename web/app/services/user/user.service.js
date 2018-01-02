@@ -14,7 +14,9 @@
             firstName: localStorageService.get('firstName'),
             lastName: localStorageService.get('lastName'),
             call: localStorageService.get('cell'),
-            roles: localStorageService.get('roles')
+            roles: localStorageService.get('roles'),
+            userId: localStorageService.get('userId'),
+            userObj: localStorageService.get('userObj')
         };
 
         var service = {
@@ -51,7 +53,7 @@
         }
 
         function removeUserFromRole(userId, roleId) {
-            var apiUrl = config.apiUrl + '/api/Role/AddUserToRole?userId=' + userId + '&roleId=' + roleId;
+            var apiUrl = config.apiUrl + '/api/Role/RemoveUserFromRole?userId=' + userId + '&roleId=' + roleId;
 
             return $http.delete(apiUrl)
                 .then(function(response){
@@ -78,7 +80,7 @@
         }
 
         function updateUser(user) {
-            var apiUrl = config.apiUrl + '/api/Users';
+            var apiUrl = config.apiUrl + '/api/Users/' + user.id;
 
             return $http.put(apiUrl, user)
                 .then(function(response){

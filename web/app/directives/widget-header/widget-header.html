@@ -13,10 +13,10 @@
             <minimaliza-menu></minimaliza-menu>
             <ul class="nav navbar-nav navbar-right">
 
-                <li class=" profil-link">
+                <li class="">
                     <a ui-sref="login">
                         <span ng-if="!vm.loggedIn">Not logged in</span>
-                        <span ng-if="vm.loggedIn" class="profile-address">Welcome {{vm.userName}}</span>
+                        <span ng-if="vm.loggedIn" class="">Welcome {{vm.user.firstName}}</span>
                     </a>
                 </li>
             </ul>

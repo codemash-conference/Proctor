@@ -26,6 +26,15 @@
             </div>
             <div class="panel-body">
 
+                <div ng-repeat="(date,sessions) in vm.schedule.sessions">
+                    <div class="scheduleDateHeader">{{date}}</div>
+                    <div class="scheduleSession" ng-repeat="session in sessions">
+                        <div class="scheduleTime">{{session.sessionStartTime | date:'h:mm a'}} to {{session.sessionEndTime | date:'h:mm a'}}</div>
+                        <div class="scheduleTitle">
+                            <a ui-sref="checkin({sessionId: session.id})">{{session.title}}</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

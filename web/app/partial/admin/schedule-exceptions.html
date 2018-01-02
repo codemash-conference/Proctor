@@ -9,7 +9,7 @@
             <div class="header-title">
                 <h3>Users</h3>
                 <small>
-                    User administration
+                    Schedule Exceptions
                 </small>
             </div>
         </div>
@@ -22,15 +22,12 @@
         <div class="panel panel-filled">
             <div class="panel-heading">
                 <div panel-tools></div>
-                User Tools
+                User Exceptions
             </div>
             <div class="panel-body">
-                <button type="button" class="btn btn-accent btn-sm" ng-click="vm.addUser()">
-                    <i class="pe pe-7s-add-user"></i> <span class="bold">Add User</span>
+                <button type="button" class="btn btn-accent btn-sm" ng-click="vm.addException()">
+                    <i class="pe pe-7s-add-user"></i> <span class="bold">Add Exception</span>
                 </button>&nbsp;
-                <button type="button" class="btn btn-accent btn-sm" ng-click="vm.importUsers()">
-                    <i class="fa fa-upload"></i> <span class="bold">Import Users</span>
-                </button>
             </div>
         </div>
     </div>
@@ -41,11 +38,11 @@
         <div class="panel panel-filled">
             <div class="panel-heading">
                 <div panel-tools></div>
-                Edit Users
+                Exceptions
             </div>
             <div class="panel-body">
                 <p>
-                    Add, Update and delete users.
+                    Add, Update and delete exceptions.
                 </p>
                 <div class="table-responsive">
 
@@ -59,24 +56,23 @@
                             <th></th>
                             <th>Last</th>
                             <th>First</th>
-                            <th>Email</th>
-                            <th>Cell</th>
-                            <th>Username</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="user in vm.users">
+                        <tr ng-repeat="exception in vm.exceptions">
                             <td>
                                 <div class=" pull-right text-nowrap">
-                                    <button class="btn btn-default btn-xs" ng-click="vm.deleteUser(user)"><i class="fa fa-times"></i></button>
-                                    <button class="btn btn-default btn-xs" ng-click="vm.updateUser(user)"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-default btn-xs" ng-click="vm.deleteException(exception)"><i class="fa fa-times"></i></button>
+                                    <button class="btn btn-default btn-xs" ng-click="vm.updateException(exception)"><i class="fa fa-pencil"></i></button>
                                 </div>
                             </td>
-                            <td>{{ user.lastName }}</td>
-                            <td>{{ user.firstName }}</td>
-                            <td>{{ user.email }}</td>
-                            <td>{{ user.cellNumber }}</td>
-                            <td>{{ user.userName }}</td>
+                            <td>{{ exception.lastName }}</td>
+                            <td>{{ exception.firstName }}</td>
+                            <td>{{ exception.startTime | date:'short'}}</td>
+                            <td>{{ exception.endTime | date:'short' }}</td>
+
                         </tr>
                         </tbody>
                     </table>

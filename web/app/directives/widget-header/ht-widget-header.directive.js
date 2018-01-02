@@ -35,6 +35,7 @@
             vm.evnt = {};
             vm.userName = '';
             vm.loggedIn = false;
+            vm.user = userService.user;
 
             activate();
 

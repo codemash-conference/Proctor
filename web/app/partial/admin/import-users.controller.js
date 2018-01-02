@@ -36,6 +36,7 @@
 
         function importUsers(){
             _.forEach(vm.users, function(user){
+
                 userService.createUser(user).then(function (response) {
                     user.imported = true;
                 });

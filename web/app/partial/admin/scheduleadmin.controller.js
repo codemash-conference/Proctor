@@ -6,7 +6,7 @@
         .module('app.partial')
         .controller('ScheduleAdminController', ScheduleAdminController);
 
-    function ScheduleAdminController($q, sessionService, logger, moment) {
+    function ScheduleAdminController($q, sessionService, logger, moment, $uibModal) {
         var vm = this;
         vm.title = 'User';
         vm.sessions = [];
@@ -15,10 +15,12 @@
         vm.rooms = [];
 
         vm.importFeed = importFeed;
+        vm.autoAssign = autoAssign;
         vm.sessionsByDateAndRoom = sessionsByDateAndRoom;
         vm.getCardState = getCardState;
         vm.getTop = getTop;
         vm.getHeight = getHeight;
+        vm.editSessionAssignee = editSessionAssignee;
 
         activate();
 
@@ -75,6 +77,16 @@
         }
 
         function getCardState(session) {
+            if(session.volunteersRequired === 0 && session.assignees.length > 0)
+            {
+                return 'ok';
+            }
+
+            if(session.volunteersRequired >0 && session.assignees.length >= session.volunteersRequired)
+            {
+                return 'ok';
+            }
+
             return '';
         }
 
@@ -89,6 +101,29 @@
             var y = moment.duration(moment(session.sessionEndTime).format('HH:mm')) / 60000;
             var z = (y - x);
             return z.toString() + 'px';
+        }
+
+        function editSessionAssignee(s) {
+            $uibModal.open({
+                templateUrl: 'app/partial/admin/session-assign.html',
+                controller: 'SessionAssignController',
+                controllerAs: 'vm',
+                size: 'lg',
+                backdrop: 'static',
+                keyboard: false,
+                resolve: {
+                    selectedSession: s
+                }
+            })
+                .result.then(function() {
+                logger.success('Sessions assigned', 'Success');
+            });
+        }
+
+        function autoAssign(){
+            sessionService.autoAssignSessions().then(function(response){
+                getSessions();
+            });
         }
     }
 })();

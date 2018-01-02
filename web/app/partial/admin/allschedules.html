@@ -17,17 +17,26 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" ng-repeat="user in vm.users | orderBy:'lastName'">
     <div class="col-xs-12">
         <div class="panel panel-filled">
             <div class="panel-heading">
                 <div panel-tools></div>
-                All Schedules
+                {{user.lastName}}, {{user.firstName}}
             </div>
             <div class="panel-body">
-
+                <div >
+                    <div>Number of Sessions: {{user.sessions.length}}</div>
+                    <div>Duration - Hours: {{DurationHours}} Minutes: {{DurationMinutes}}</div>
+                    <div ng-repeat="(date,sessions) in user.sessions">
+                        <div class="scheduleDateHeader">{{date}}</div>
+                        <div class="scheduleSession" ng-repeat="session in sessions">
+                            <div class="scheduleTime">{{session.sessionStartTime | date:'h:mm a'}} to {{session.sessionEndTime | date:'h:mm a'}}</div>
+                            <div class="scheduleTitle">{{session.title}}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
 </div>

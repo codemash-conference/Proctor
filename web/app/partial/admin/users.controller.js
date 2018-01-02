@@ -66,8 +66,9 @@
                     'isAdd' : true
                 }
             })
-                .result.then(function() {
-                logger.success('User Updated', 'Success');
+                .result.then(function(newUser) {
+                    vm.users.push(newUser);
+                    logger.success('User Added', 'Success');
             });
 
         }

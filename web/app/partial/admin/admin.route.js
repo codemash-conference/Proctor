@@ -127,6 +127,21 @@
                         content: 'All Schedules',
                         rolesAllowed: ['Admin']
                     }
+                })
+                .state('admin.scheduleExceptions', {
+                    url: '/schedule-exceptions',
+                    templateUrl: 'app/partial/admin/schedule-exceptions.html',
+                    controller: 'ScheduleExceptionController',
+                    controllerAs: 'vm',
+                    title: 'Schedule Exceptions',
+                    resolve: {},
+                    settings: {
+                        mainNavigation: true,
+                        level: 1,
+                        ordinal: 8,
+                        content: 'Schedule Exceptions',
+                        rolesAllowed: ['Admin']
+                    }
                 });
         });
 

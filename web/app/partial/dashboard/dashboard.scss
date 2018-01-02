@@ -1,0 +1,89 @@
+.checkInStatus{
+    font-size: 8pt;
+    height: 160px;
+    width: 140px;
+    float: left;
+    border: solid 1px #fff;
+    margin: 5px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #AAAAAA;
+    cursor: hand;
+}
+
+.checkedIn{
+    background-color: green;
+}
+
+.checkedInPartial{
+    background-color: yellow;
+}
+
+.checkedInPartial{
+    background-color: lightgreen;
+}
+
+.checkInStatusHeader{
+    background-color: #f67e00;
+    color: #fff;
+    height: 18px;
+    font-size: 10pt;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.checkInStatusText{
+    color: #000;
+}
+
+.checkInStatusAttendance{
+    font-size: 8pt;
+    height: 45px;
+    width: 50px;
+    float: left;
+    border: solid 1px #fff;
+    margin: 5px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #0C84A9;
+    margin-left: 11px;
+}
+
+.checkInStatusAttendanceHeader{
+    background-color: lightblue;
+    color: #0C84A9;
+    height: 15px;
+    font-size: 8pt;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.checkInStatusAttendanceText{
+    color: #000;
+    font-size: 14pt;
+}
+
+.timeGroup{
+    clear:both;
+    padding-bottom: 10px;
+}
+
+.timeGroupHeader{
+    background-color: #f67e00;
+    padding-left: 10px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 15px;
+    cursor: hand;
+}
+
+.timeGroupSessions{
+    display: none;
+}
+
+.open{
+    display: block !important;
+}
+.proctors{
+    text-align: left;
+    padding-left: 10px;
+}

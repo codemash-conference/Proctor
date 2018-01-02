@@ -1,71 +1,68 @@
-<section id="dashboard-view" class="mainbar">
-    <section class="matter">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="today-datas">
-                        <li class="blightblue">
-                            <div class="pull-left"><i class="fa fa-plane"></i></div>
-                            <div class="datas-text pull-right">
-                                <span class="bold">May 18 - 19, 2015</span> Castle Resort, Neverland
-                            </div>
-                            <div class="clearfix"></div>
-                        </li>
-
-                        <li class="borange">
-                            <div class="pull-left"><i class="fa fa-envelope"></i></div>
-                            <div class="datas-text pull-right">
-                                <span class="bold">{{vm.messageCount}}</span> Messages
-                            </div>
-                            <div class="clearfix"></div>
-                        </li>
-
-                    </ul>
-                </div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="view-header">
+            <div class="pull-right text-right" style="line-height: 14px">
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="widget wviolet">
-                        <div ht-widget-header title="People"
-                             allow-collapse="true"></div>
-                        <div class="widget-content text-center text-info">
-                            <table class="table table-condensed table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Age</th>
-                                        <th>Location</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="p in vm.people">
-                                        <td>{{p.firstName}}</td>
-                                        <td>{{p.lastName}}</td>
-                                        <td>{{p.age}}</td>
-                                        <td>{{p.location}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="widget-foot">
-                            <div class="clearfix"></div>
+            <div class="header-icon">
+                <i class="pe page-header-icon pe-7s-map"></i>
+            </div>
+            <div class="header-title">
+                <h3>Dashboard</h3>
+                <small>
+                    Check the scheduled sessions.
+                    <div>Last Updated: {{vm.lastUpdateTime}}</div>
+                </small>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-filled" ng-repeat="(dates, sessions) in vm.sessions">
+            <div class="panel-heading">
+                <div panel-tools></div>
+                {{dates}}
+            </div>
+            <div class="panel-body">
+                <div ng-repeat="session in sessions">
+
+                    <div class="checkInStatus {{vm.checkedInClass(session)}}" ng-if="vm.isCheckedIn(session)">
+                        <div class="checkInStatusHeader">{{session.roomString}}</div>
+                        <div class="checkInStatusText">CheckIn: {{session.proctorCheckIns[0].checkInTime | date:'h:mm a'}}</div>
+                        <div class="checkInStatusText proctors" ng-repeat="proctor in session.assignees" ng-bind-html="vm.getProctorStatus(session, proctor)"></div>
+
+                        <div ng-if="session.sessionType !== 'Static Session'">
+                            <div class="checkInStatusText">Start:{{session.sessionStartTime | date:'h:mm a'}}</div>
+                            <div class="checkInStatusText">End:{{session.sessionEndTime | date:'h:mm a'}}</div>
+
+                            <div class="checkInStatusAttendance">
+                                <div class="checkInStatusAttendanceHeader">10 Min</div>
+                                <div class="checkInStatusAttendanceText">{{session.attendees10}}</div>
+                            </div>
+
+                            <div class="checkInStatusAttendance">
+                                <div class="checkInStatusAttendanceHeader">10 Min Till</div>
+                                <div class="checkInStatusAttendanceText">{{session.attendees50}}</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="widget wgreen">
-                        <div ht-widget-header title="{{vm.news.title}}"
-                             allow-collapse="true"></div>
-                        <div class="widget-content text-center text-info">
-                            <small>{{vm.news.description}}</small>
+
+                    <div class="checkInStatus" ng-if="!vm.isCheckedIn(session)">
+                        <div class="checkInStatusHeader">{{session.roomString}}</div>
+
+                        <div class="checkInStatusText" style="padding-top: 10px;">
+                            {{session.title}}
                         </div>
-                        <div class="widget-foot">
-                            <div class="clearfix"></div>
+                        <div class="checkInStatusAttendanceText">
+                            {{session.sessionStartTime | date:'h:mm a'}}
                         </div>
+                        <div class="checkInStatusText proctors" ng-repeat="proctor in session.assignees" ng-bind-html="vm.getProctorStatus(session, proctor)"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-</section>
+    </div>
+</div>
+

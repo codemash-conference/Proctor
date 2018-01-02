@@ -26,6 +26,7 @@
             </div>
             <div class="panel-body">
                 <button class="btn btn-accent" ng-click="vm.importFeed()">Import Feed</button>
+                <button class="btn btn-accent" ng-click="vm.autoAssign()">Auto Assign</button>
             </div>
         </div>
 
@@ -40,29 +41,36 @@
                 Schedule Admin
             </div>
             <div class="panel-body">
+                <div class="btn-group">
                 <button class="btn btn-accent"
                         ng-class="{active: vm.currentDate === cDate}"
                         ng-repeat="cDate in vm.dates"
                         ng-click="vm.currentDate = cDate">
                     {{cDate}}
                 </button>
+                </div>
 
                 <div ng-repeat="cDate in vm.dates" ng-if="vm.currentDate === cDate" style="position: relative">
                     <h1>{{cDate}}</h1>
-                    <div ng-repeat="room in vm.rooms">
-
-                        <div class="scheduleAdminRoom">
-                            <div class="sessionRoom">{{room}}</div>
-                            <div style="height: 800px; background-color: gray">
-                                <div class="scheduleAdminSession" ng-repeat="session in vm.sessionsByDateAndRoom(cDate, room)" ng-class="vm.getCardState(session)"
-                                     style="top:{{vm.getTop(session)}}; height:{{vm.getHeight(session)}}">
-                                    <div class="sessionTitle">{{session.title}}</div>
-                                    <div>{{session.sessionStartTime | date:'h:mm a'}}</div>
-                                    <div>{{session.sessionEndTime | date:'h:mm a'}}</div>
+                    <div class="table-responsive">
+                        <div style="width: {{vm.rooms.length * 80}}px">
+                            <div ng-repeat="room in vm.rooms">
+                                <div class="scheduleAdminRoom">
+                                    <div class="sessionRoom">{{room}}</div>
+                                    <div style="height: 1000px; background-color: gray">
+                                        <div class="scheduleAdminSession"
+                                             ng-repeat="session in vm.sessionsByDateAndRoom(cDate, room)"
+                                             ng-class="vm.getCardState(session)"
+                                             ng-click="vm.editSessionAssignee(session)"
+                                             style="top:{{vm.getTop(session)}}; height:{{vm.getHeight(session)}}">
+                                            <div class="sessionTitle">{{session.title}}</div>
+                                            <div>{{session.sessionStartTime | date:'h:mm a'}}</div>
+                                            <div>{{session.sessionEndTime | date:'h:mm a'}}</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

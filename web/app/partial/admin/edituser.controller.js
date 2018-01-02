@@ -24,7 +24,7 @@
 
             if(isAdd){
                 userService.createUser(vm.user).then(function (response) {
-                    $uibModalInstance.close();
+                    $uibModalInstance.close(response.data);
                 });
             }
             else {
@@ -33,6 +33,7 @@
                         vm.userOrig.firstName = vm.user.firstName;
                         vm.userOrig.lastName = vm.user.lastName;
                         vm.userOrig.email = vm.user.email;
+                        vm.userOrig.userName = vm.user.userName;
                         $uibModalInstance.close();
                     },
                     function (response) {

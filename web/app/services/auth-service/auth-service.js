@@ -47,13 +47,20 @@
                 authentication.userName = loginData.userName;
                 var tokenPayload = jwtHelper.decodeToken(response.access_token);
                 localStorageService.set('userName', tokenPayload['unique_name']);
-                localStorageService.set('roles', tokenPayload.role);
+                if(Array.isArray(tokenPayload.role)) {
+                    localStorageService.set('roles', tokenPayload.role);
+                }
+                else{
+                    localStorageService.set('roles', Array(tokenPayload.role));
+                }
                 localStorageService.set('loggedIn', true);
                 localStorageService.set('email', user.Email);
                 localStorageService.set('firstName', user.FirstName);
                 localStorageService.set('lastName', user.LastName);
                 localStorageService.set('gravatar', user.Gravatar);
                 localStorageService.set('cell', user.CellNumber);
+                localStorageService.set('userId', user.Id);
+                localStorageService.set('userObj', user);
 
 
                 $log.debug(tokenPayload);
