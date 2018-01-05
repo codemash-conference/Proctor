@@ -25,7 +25,7 @@
 
         function activate() {
             getSessions();
-            vm.checkInTimer = $interval(getSessions, 10000);
+            vm.checkInTimer = $interval(getSessions, 5000);
         }
 
         function getSessions() {
@@ -37,7 +37,7 @@
                             session.sessionType === 'Static Session';
                     })
                     .filter(function(session) {
-                        return moment(session.sessionStartTime).format("MM/DD/YYYY") === '01/11/2018';
+                        return moment(session.sessionStartTime).format("MM/DD/YYYY") === '01/08/2018';
                     })
                     .sortBy(function(session) { return session.sessionStartTime; })
                     .forEach(function(session) {

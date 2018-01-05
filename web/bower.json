@@ -48,9 +48,8 @@
     "topojson": "^3.0.2",
     "nestable": "*",
     "sparkline": "http://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.js",
-    "jquery.flot.spline": "https://raw.githubusercontent.com/AMKohn/flot/master/jquery.flot.spline.js",
     "angular-flot": "^0.0.6",
-    "Flot": "flot#^0.8.3",
+    "Flot": "jquery-flot#^0.8.3",
     "datamaps": "^0.5.7",
     "angular-datamaps": "^0.1.2",
     "angular-toastr": "^2.1.1",
@@ -62,7 +61,8 @@
     "summernote": "^0.8.2",
     "angular-summernote": "^0.8.1",
     "angular-chart.js": "angular-chartjs#^1.1.1",
-    "angular-resource": "^1.6.8"
+    "angular-resource": "^1.6.8",
+    "ng-resource": "^0.0.2"
   },
   "resolutions": {
     "switchery": "^0.8.2"

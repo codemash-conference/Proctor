@@ -19,7 +19,9 @@
             autoAssignSessions: autoAssignSessions,
             getSessionsPerUser: getSessionsPerUser,
             getUserSchedule: getUserSchedule,
-            getRooms: getRooms
+            getRooms: getRooms,
+            addUserToSession: addUserToSession,
+            removeUserFromSession: removeUserFromSession
         };
 
         return service;
@@ -130,6 +132,24 @@
             return $http.get(apiUrl)
                 .then(function(response){
                     return response.data;
+                });
+        }
+
+        function addUserToSession(sessionId, userId) {
+            var apiUrl = config.apiUrl + '/api/Sessions/AddUserToSession?sessionId=' + sessionId + '&userId=' + userId;
+
+            return $http.post(apiUrl)
+                .then(function(response){
+                    return response;
+                });
+        }
+
+        function removeUserFromSession(sessionId, userId) {
+            var apiUrl = config.apiUrl + '/api/Sessions/RemoveUserFromSession?sessionId=' + sessionId + '&userId=' + userId;
+
+            return $http.delete(apiUrl)
+                .then(function(response){
+                    return response;
                 });
         }
     }

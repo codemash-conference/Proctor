@@ -6,7 +6,7 @@
         .module('app.partial')
         .controller('SessionAssignController', SessionAssignController);
 
-    function SessionAssignController($q, logger, moment, userService,
+    function SessionAssignController($q, logger, moment, userService, sessionService,
                                    $uibModalInstance, selectedSession, roleService) {
         var vm = this;
         vm.title = 'Assign Users to Session';
@@ -14,6 +14,10 @@
         vm.users = [];
         vm.ok = ok;
         vm.cancel = cancel;
+        vm.addUserToSession = addUserToSession;
+        vm.removeUserFromSession = removeUserFromSession;
+        vm.addAllUsers = addAllUsers;
+        vm.removeAllUsers = removeAllUsers;
 
         activate();
 
@@ -23,8 +27,8 @@
 
         function getAvailableVolunteers(role) {
 
-            roleService.getUsersForRole(2).then(function (data) {
-                vm.users = data;
+            roleService.getUsersForRoleName('Everyone').then(function (data) {
+                vm.users = _.sortBy(data,function(user){ return user.lastName + ', ' + user.firstName; });
             });
         }
 
@@ -34,6 +38,41 @@
 
         function cancel() {
             $uibModalInstance.dismiss('cancel');
+        }
+
+        function removeUserFromSession(item) {
+            sessionService.removeUserFromSession(vm.session.id, item.id).then(function(response) {
+                logger.success('Removed user from session');
+            });
+        }
+
+        function addUserToSession(item) {
+            sessionService.addUserToSession(vm.session.id, item.id).then(function(response) {
+                logger.success('Added user from session');
+            });
+
+        }
+
+        function addAllUsers() {
+            _.forEach(vm.users, function(user){
+               if(!_.find(vm.session.assignees, function(assignee){ return assignee.id === user.id; })){
+                   sessionService.addUserToSession(vm.session.id, user.id).then(function(response) {
+                       vm.session.assignees.push(user);
+                   });
+               }
+            });
+        }
+
+        function removeAllUsers() {
+            _.forEach(vm.users, function(user){
+                var assign = _.find(vm.session.assignees, function(assignee){ return assignee.id === user.id; });
+                if(assign){
+                    sessionService.removeUserFromSession(vm.session.id, user.id).then(function(response) {
+                        var index = vm.session.assignees.indexOf(assign);
+                        vm.session.assignees.splice(index, 1);
+                    });
+                }
+            });
         }
 
     }

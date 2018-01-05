@@ -10,8 +10,8 @@
         'app.filters',
         'ui.select',
         'datatables',
-        'datatables.buttons',
-        'ngResource'
+        'datatables.buttons'
+
     ]);
 
     app.run(function($rootScope, $state, localStorageService){

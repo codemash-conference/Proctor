@@ -5,7 +5,7 @@
                 <minimaliza-menu></minimaliza-menu>
             </div>
             <a class="navbar-brand" href="index.html">
-                <img src="../app/images/codemash-icon.png" style="height: 50px">
+                <img src="../images/codemash-icon.png" style="height: 50px">
                 <div style="position: absolute; top: 20px; left: 50px">CodeMash</div>
             </a>
         </div>
@@ -17,6 +17,9 @@
                     <a ui-sref="login">
                         <span ng-if="!vm.loggedIn">Not logged in</span>
                         <span ng-if="vm.loggedIn" class="">Welcome {{vm.user.firstName}}</span>
+                        <div ng-if="vm.loggedIn" class="" ng-click="vm.logout()">
+                            Logout
+                        </div>
                     </a>
                 </li>
             </ul>

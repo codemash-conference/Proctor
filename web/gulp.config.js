@@ -7,7 +7,7 @@ module.exports = function() {
     var temp = './.tmp/';
     var indexFile = 'index.html';
     var indexFileTemplate = 'index.template.html';
-    var wiredep = require('wiredep');
+    var wiredep = require('wiredep').stream;
     var bowerFiles = wiredep({devDependencies: true})['js'];
     var bower = {
         json: require('./bower.json'),

@@ -25,7 +25,15 @@
                 Helpers
             </div>
             <div class="panel-body">
-
+                <div ng-repeat="room in vm.rooms">
+                    <h3>{{room}}</h3>
+                    <div ng-repeat="date in vm.dates" style="padding-left: 20px;">
+                        <h5>{{date}}</h5>
+                            <div ng-repeat="session in vm.getSessionsForRoomAndDate(room, date)" style="padding-left: 20px;">
+                                {{session.sessionStartTime | date:"hh:mm a" }} - {{session.sessionEndTime | date:"hh:mm a" }} {{session.title}} -- Interns: {{session.volunteersRequired}}
+                            </div>
+                    </div>
+                </div>
             </div>
         </div>
 

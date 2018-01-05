@@ -6,7 +6,8 @@
         .factory('userService', userService);
 
     function userService($http, moment, localStorageService, config) {
-        var user = {
+        var user = function(){
+            return {
             username: localStorageService.get('userName'),
             loggedIn: localStorageService.get('loggedIn'),
             email: localStorageService.get('email'),
@@ -16,18 +17,21 @@
             call: localStorageService.get('cell'),
             roles: localStorageService.get('roles'),
             userId: localStorageService.get('userId'),
-            userObj: localStorageService.get('userObj')
+            userObj: localStorageService.get('userObj')};
         };
 
         var service = {
             user: user,
             getAllUsers: getAllUsers,
+            getUserById:getUserById,
             createUser: createUser,
             updateUser: updateUser,
             deleteUser: deleteUser,
             addUserToRole : addUserToRole,
             removeUserFromRole : removeUserFromRole,
-            getNewUserObj: getNewUserObj
+            getNewUserObj: getNewUserObj,
+            resetPassword: resetPassword,
+            adminResetPassword: adminResetPassword
         };
 
 
@@ -41,6 +45,15 @@
                     return response.data;
                 });
 
+        }
+
+        function getUserById(userId) {
+            var apiUrl = config.apiUrl + '/api/Users/' + userId;
+
+            return $http.get(apiUrl)
+                .then(function(response){
+                    return response.data;
+                });
         }
 
         function addUserToRole(userId, roleId) {
@@ -85,6 +98,28 @@
             return $http.put(apiUrl, user)
                 .then(function(response){
                     return response;
+                });
+        }
+
+        function resetPassword(resetPasswordArgs) {
+            var apiUrl = config.apiUrl + '/api/Users/PasswordReset';
+
+            return $http.put(apiUrl, resetPasswordArgs)
+                .then(function(response){
+                    return response;
+                }, function (reason) {
+                    return reason;
+                });
+        }
+
+        function adminResetPassword(resetPasswordArgs) {
+            var apiUrl = config.apiUrl + '/api/Users/AdminPasswordReset';
+
+            return $http.put(apiUrl, resetPasswordArgs)
+                .then(function(response){
+                    return response;
+                }, function (reason) {
+                    return reason;
                 });
         }
 

@@ -21,7 +21,7 @@
     var config = {
         appErrorPrefix: '[Error] ',
         appTitle: 'Proctor',
-        apiUrl: 'http://localhost:53982'
+        apiUrl: 'http://codemashweb:3000'
     };
 
 

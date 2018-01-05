@@ -12,10 +12,20 @@
         vm.isCurrent = isCurrent;
         vm.menuSelect = menuSelect;
         vm.isSelected = isSelected;
+        vm.evnt = {};
         vm.navSelected = '';
+
         activate();
 
-        function activate() { getNavRoutes(); }
+        function activate() {
+            getNavRoutes();
+            bindEvents();
+        }
+
+        function bindEvents(){
+            vm.evnt.navRefresh = $rootScope.$on('nav:Refresh', getNavRoutes);
+            $scope.$on("$destroy", function () { cleanUp(); });
+        }
 
         function getNavRoutes() {
             vm.navRoutes = _.chain(states)
@@ -37,7 +47,7 @@
         }
 
         function hasAccess(r){
-            if(r.settings && r.settings.rolesAllowed && _.intersection(userService.user.roles,
+            if(r.settings && r.settings.rolesAllowed && _.intersection(userService.user().roles,
                     r.settings.rolesAllowed).length > 0)
             {
                 return true;
@@ -76,6 +86,12 @@
                 vm.navSelected = selection;
             }
 
+        }
+
+        function cleanUp(){
+            if (vm.evnt.navRefresh) {
+                vm.evnt.navRefresh();
+            }
         }
 
         $scope.$on('globalStyles:changed', function (event, newVal) {

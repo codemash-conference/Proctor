@@ -13,7 +13,8 @@
             createRole: createRole,
             updateRole: updateRole,
             deleteRole: deleteRole,
-            getUsersForRole: getUsersForRole
+            getUsersForRole: getUsersForRole,
+            getUsersForRoleName: getUsersForRoleName
         };
 
         return service;
@@ -66,6 +67,15 @@
 
         function getUsersForRole(id) {
             var apiUrl = config.apiUrl + '/api/Role/GetUsersForRole?id=' + id;
+
+            return $http.get(apiUrl)
+                .then(function(response){
+                    return response.data;
+                });
+        }
+
+        function getUsersForRoleName(name) {
+            var apiUrl = config.apiUrl + '/api/Role/GetUsersForRoleName?name=' + name;
 
             return $http.get(apiUrl)
                 .then(function(response){

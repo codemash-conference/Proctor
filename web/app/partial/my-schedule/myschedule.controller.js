@@ -18,7 +18,7 @@
         }
 
         function getMySchedule() {
-            sessionService.getUserSchedule(userService.user.userId).then(
+            sessionService.getUserSchedule(userService.user().userId).then(
                 function (data) {
                     vm.schedule = data;
                     vm.schedule.sessions = _.chain(vm.schedule.sessions)

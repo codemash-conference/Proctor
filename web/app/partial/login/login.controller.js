@@ -6,12 +6,12 @@
         .controller('LoginController', LoginController);
 
     /* @ngInject */
-    function LoginController($scope, $location, $global, authService) {
+    function LoginController($scope, $location, $global, authService, $state, $timeout) {
         /*jshint validthis: true */
         var vm = this;
         vm.title = 'LoginController';
         vm.authData = {};
-        vm.login = login;        
+        vm.login = login;
 
         $global.set('fullscreen', true);
 
@@ -24,10 +24,15 @@
            authService.login(vm.authData)
                 .then(function() {
                     $global.set('fullscreen', false);
-                    $location.path('/');
+                    $timeout(gotoHome, 500);
                 }, function(err){
                     vm.errorMessage = err.error_description;
                 });
-        }        
-    } 
+        }
+
+        function gotoHome()
+        {
+            $state.go('home');
+        }
+    }
 })();

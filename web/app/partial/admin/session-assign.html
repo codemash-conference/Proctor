@@ -19,12 +19,26 @@
         <div class="panel panel-filled">
             <div class="panel-body">
                 <div class="row">
+                    <button class="btn btn-accent" ng-click="vm.addAllUsers()">Add All Users</button>
+                    <button class="btn btn-accent" ng-click="vm.removeAllUsers()">Remove All Users</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-filled">
+            <div class="panel-body">
+                <div class="row">
                     <div>{{vm.session.title}}</div>
-                    <ul>
-                        <li ng-repeat="user in vm.session.assignees">
+                    <div>Volunteers Needed: {{vm.session.volunteersRequired}}</div>
+
+                    <ui-select multiple ng-model="vm.session.assignees" theme="bootstrap"
+                               on-select="vm.addUserToSession($item)"
+                               on-remove="vm.removeUserFromSession($item)">
+                        <ui-select-match placeholder="Select user...">{{$item.lastName}}, {{$item.firstName}}</ui-select-match>
+                        <ui-select-choices repeat="user in vm.users | filter:$select.search">
                             {{user.lastName}}, {{user.firstName}}
-                        </li>
-                    </ul>
+                        </ui-select-choices>
+                    </ui-select>
 
                 </div>
             </div>
@@ -32,6 +46,5 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="vm.cancel()">Close</button>
-        <button type="button" class="btn btn-accent" ng-click="vm.ok()">Save changes</button>
     </div>
 </div>

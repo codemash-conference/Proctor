@@ -65,6 +65,7 @@
 
                 $log.debug(tokenPayload);
                 $rootScope.$broadcast("user:LoggedIn");
+                $rootScope.$broadcast("nav:Refresh");
                 return deferred.resolve(response);
 
             }).error(function (err, status) {
@@ -81,6 +82,7 @@
             authentication.isAuth = false;
             authentication.userName = '';
             $rootScope.$broadcast("user:LoggedOut");
+            $rootScope.$broadcast("nav:Refresh");
         }
 
         function fillAuthData() {

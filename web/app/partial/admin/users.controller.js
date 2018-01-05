@@ -15,6 +15,7 @@
         vm.updateUser = updateUser;
         vm.addUser = addUser;
         vm.importUsers = importUsers;
+        vm.resetPassword = resetPassword;
 
         activate();
 
@@ -88,6 +89,21 @@
             })
                 .result.then(function() {
                 logger.success('User Updated', 'Success');
+            });
+        }
+
+        function resetPassword(user) {
+            $uibModal.open({
+                templateUrl: 'app/partial/admin/admin-password-reset.html',
+                controller: 'AdminPasswordResetController',
+                controllerAs: 'vm',
+                size: 'sm',
+                resolve: {
+                    'user' : user
+                }
+            })
+                .result.then(function() {
+                logger.success('Password reset', 'Success');
             });
         }
 

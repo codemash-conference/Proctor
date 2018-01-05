@@ -16,7 +16,7 @@
                         level: 0,
                         ordinal: 4,
                         content: 'Dashboard',
-                        rolesAllowed: ['Everyone']
+                        rolesAllowed: ['Admin']
                     }
                 });
         });

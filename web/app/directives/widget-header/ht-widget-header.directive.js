@@ -29,19 +29,20 @@
         };
 
         /* @ngInject */
-        function htWidgetHeaderController($scope, $location, userService, $rootScope) {
+        function htWidgetHeaderController($scope, $location, userService, $rootScope, $state, authService) {
 
             var vm = this;
             vm.evnt = {};
             vm.userName = '';
             vm.loggedIn = false;
-            vm.user = userService.user;
+            vm.user = userService.user();
+            vm.logout = logout;
 
             activate();
 
             function activate(){
-                vm.userName = userService.user.username;
-                vm.loggedIn = userService.user.loggedIn;
+                vm.userName = userService.user().username;
+                vm.loggedIn = userService.user().loggedIn;
                 bindEvents();
             }
             function bindEvents(){
@@ -51,13 +52,13 @@
             }
 
             function UserLoggedIn() {
-                vm.userName = userService.user.username;
-                vm.loggedIn = userService.user.username;
+                vm.userName = userService.user().username;
+                vm.loggedIn = userService.user().username;
             }
 
             function UserLoggedOut() {
-                vm.userName = userService.user.username;
-                vm.loggedIn = userService.user.username;
+                vm.userName = userService.user().username;
+                vm.loggedIn = userService.user().username;
             }
 
             function cleanUp(){
@@ -67,6 +68,11 @@
                 if (vm.evnt.loggedOut) {
                     vm.evnt.loggedOut();
                 }
+            }
+
+            function logout() {
+                authService.logOut();
+                $state.go("login");
             }
 
         }

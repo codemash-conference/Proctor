@@ -47,7 +47,7 @@
             }
 
             function hasAccess(r){
-                if(r.settings && r.settings.rolesAllowed && _.intersection(userService.user.roles,
+                if(r.settings && r.settings.rolesAllowed && _.intersection(userService.user().roles,
                         r.settings.rolesAllowed).length > 0)
                 {
                     return true;

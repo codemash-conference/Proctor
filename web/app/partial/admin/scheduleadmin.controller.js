@@ -46,7 +46,8 @@
                     .filter(function(session) {
                         return session.sessionType === 'General Session' ||
                             session.sessionType === 'Pre-Compiler' ||
-                            session.sessionType === 'Static Session';
+                            session.sessionType === 'Static Session' ||
+                            session.sessionType === 'Sponsor Session';
                     })
                     .sortBy(function(session) { return session.sessionStartTime; })
                     .forEach(function(session) {

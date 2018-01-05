@@ -46,8 +46,8 @@
             vm.exception.firstName = vm.selectedUser.firstName;
             vm.exception.lastName = vm.selectedUser.lastName;
             vm.exception.userId = vm.selectedUser.id;
-            vm.exception.startTime = moment(vm.exception.startTimeRaw).format("M/D/YYYY hh:mm a");
-            vm.exception.endTime = moment(vm.exception.endTimeRaw).format("M/D/YYYY hh:mm a");
+            vm.exception.startTime = moment(vm.startTimeRaw).format("M/D/YYYY hh:mm a");
+            vm.exception.endTime = moment(vm.endTimeRaw).format("M/D/YYYY hh:mm a");
 
             if(isAdd){
                 scheduleExceptionService.createException(vm.exception).then(function (response) {
