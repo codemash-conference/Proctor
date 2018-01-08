@@ -16,6 +16,9 @@
 
     app.run(function($rootScope, $state, localStorageService){
 
+
+
+
         $rootScope.$on("$stateChangeStart", function (e, toState, toParams, fromState, fromParams) {
             /*
              logger.log("Route State Change Start!!");

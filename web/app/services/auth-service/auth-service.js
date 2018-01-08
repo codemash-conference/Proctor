@@ -47,6 +47,7 @@
                 authentication.userName = loginData.userName;
                 var tokenPayload = jwtHelper.decodeToken(response.access_token);
                 localStorageService.set('userName', tokenPayload['unique_name']);
+                localStorageService.set('refreshToken', response.refresh_token);
                 if(Array.isArray(tokenPayload.role)) {
                     localStorageService.set('roles', tokenPayload.role);
                 }

@@ -6,7 +6,7 @@
         .module('app.partial')
         .controller('DashboardController', DashboardController);
 
-    function DashboardController($q, $scope, sessionService, logger, moment, $interval) {
+    function DashboardController($q, $scope, sessionService, logger, moment, $interval, $window, $uibModal) {
         var vm = this;
         vm.title = 'Dashboard';
         vm.sessions = [];
@@ -16,16 +16,20 @@
         vm.getProctorStatus = getProctorStatus;
         vm.isCheckedIn = isCheckedIn;
         vm.checkedInClass = checkedInClass;
+        vm.getColumnSize = getColumnSize;
+        vm.impersonateCheckIn = impersonateCheckIn;
 
         activate();
 
         $scope.$on("$destroy", function() {
             if (vm.dashboardTimer) { $interval.cancel(vm.dashboardTimer); }
+            $window.Pace.options.ajax.ignoreURLs = [];
         });
 
         function activate() {
+            $window.Pace.options.ajax.ignoreURLs = ['/api/Sessions'];
             getSessions();
-            vm.checkInTimer = $interval(getSessions, 5000);
+            vm.dashboardTimer = $interval(getSessions, 5000);
         }
 
         function getSessions() {
@@ -37,7 +41,7 @@
                             session.sessionType === 'Static Session';
                     })
                     .filter(function(session) {
-                        return moment(session.sessionStartTime).format("MM/DD/YYYY") === '01/08/2018';
+                        return moment(session.sessionStartTime).format("MM/DD/YYYY") === moment().format("MM/DD/YYYY");//'01/12/2018';
                     })
                     .sortBy(function(session) { return session.sessionStartTime; })
                     .forEach(function(session) {
@@ -57,10 +61,10 @@
             var proctorString = '';
 
             if(_.find(session.proctorCheckIns, {userId:proctor.id})) {
-                proctorString += '<div>&#9745; ' + proctor.lastName + ', ' + proctor.firstName + '</div>';
+                proctorString += 'text-success';
             }
             else {
-                proctorString += '<div>&#9744; ' + proctor.lastName + ', ' + proctor.firstName + '</div>';
+                proctorString += 'text-muted';
             }
 
             return proctorString;
@@ -71,10 +75,9 @@
         }
 
         function checkedInClass(session) {
+            if(session.proctorCheckIns.length === 0) { return  '';}
             if(session.assignees.length !== session.proctorCheckIns.length){
-                if(getSessionStatus(session) === 'Done') {
-                    return 'checkedInDone';
-                }
+                return 'checkedInPartial';
             }
             return 'checkedIn';
         }
@@ -94,6 +97,28 @@
             }
         }
 
+        function getColumnSize(session) {
+            if(session.assignees.length <= 3) { return '3';}
+            if(session.assignees.length <= 6) { return '4';}
+            return '12';
+        }
+
+        function impersonateCheckIn(session, proctor){
+            $uibModal.open({
+                templateUrl: 'app/partial/dashboard/check-in-impersonate.html',
+                controller: 'CheckInImpersonateController',
+                controllerAs: 'vm',
+                size: 'lg',
+                resolve: {
+                    sessionId: session.id,
+                    proctor: proctor,
+                    isImpersonate : true
+                }
+            })
+                .result.then(function() {
+
+            });
+        }
     }
 })();
 /* jshint +W117 */

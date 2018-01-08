@@ -5,17 +5,17 @@
         .module('app.partial')
         .config(function($stateProvider) {
             $stateProvider
-                .state('dashboard', {
-                    url: '/dashboard',
-                    templateUrl: 'app/partial/dashboard/dashboard.html',
-                    controller: 'DashboardController',
+                .state('sessionresults', {
+                    url: '/sessionresults',
+                    templateUrl: 'app/partial/session-results/session-results.html',
+                    controller: 'SessionResultsController',
                     controllerAs: 'vm',
-                    title: 'Dashboard',
+                    title: 'Session Results',
                     settings: {
                         mainNavigation: true,
                         level: 0,
                         ordinal: 4,
-                        content: 'Dashboard',
+                        content: 'Session Results',
                         rolesAllowed: ['Admin', 'Board', 'Volunteer Admin']
                     }
                 });

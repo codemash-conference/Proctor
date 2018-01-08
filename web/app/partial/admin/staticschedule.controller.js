@@ -47,9 +47,10 @@
                 keyboard: false,
                 resolve: {}
             })
-                .result.then(function() {
-                getStaticSessions();
-                logger.success('Sessions Imported', 'Success');
+                .result.then(function(imported) {
+                    if(imported){
+                        getStaticSessions();
+                    }
             });
         }
 

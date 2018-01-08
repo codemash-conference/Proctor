@@ -45,6 +45,7 @@
                         <span class="help-block small">Number of volunteers required for the session</span>
                     </div>
                     <div class="form-group col-lg-6">
+                        <label>Room(s)</label>
                         <ui-select multiple ng-model="vm.session.rooms" theme="bootstrap">
                             <ui-select-match placeholder="Select user...">{{$item.name}}</ui-select-match>
                             <ui-select-choices repeat="room in vm.rooms | filter:$select.search">

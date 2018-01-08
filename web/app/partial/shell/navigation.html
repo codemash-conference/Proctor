@@ -9,15 +9,15 @@
                 ng-class="{active: $state.includes(r.name)}">
 
                 <a ui-sref="{{r.name}}" ng-bind-html="r.settings.content" ng-if="!r.abstract"
-                   ng-click="vm.menuSelect(r.name, vm.navSelected)"></a>
+                   ng-click="vm.menuSelect(r, vm.navSelected)"></a>
 
-                <a ng-click="vm.menuSelect(r.name, vm.navSelected)" ng-if="r.abstract">
+                <a ng-click="vm.menuSelect(r, vm.navSelected)" ng-if="r.abstract">
                     {{r.settings.content}}
                     <span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
                 </a>
                 <ul class="nav nav-second" uib-collapse="vm.isSelected(r.name, vm.navSelected)" ng-if="r.abstract">
                     <li ng-repeat="subnav in r.subnav" ui-sref-active="active">
-                        <a ui-sref="{{subnav.name}}" ng-bind-html="subnav.settings.content"></a>
+                        <a ui-sref="{{subnav.name}}" ng-bind-html="subnav.settings.content" ng-click="vm.menuSelect(subnav, vm.navSelected)"></a>
                     </li>
                 </ul>
             </li>

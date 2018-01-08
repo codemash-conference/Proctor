@@ -12,6 +12,7 @@
         vm.title = 'Import Static Sessions';
         vm.fileContent = null;
         vm.sessions = null;
+        vm.imported = false;
         vm.ok = ok;
         vm.cancel = cancel;
         vm.importStaticSessions = importStaticSessions;
@@ -27,7 +28,12 @@
         }
 
         function cancel() {
-            $uibModalInstance.dismiss('cancel');
+            if(vm.imported){
+                $uibModalInstance.close(vm.imported);
+            }
+            else {
+                $uibModalInstance.dismiss('cancel');
+            }
         }
 
         function loadStaticSessions() {
@@ -35,12 +41,14 @@
         }
 
         function importStaticSessions(){
+            vm.imported = true;
             _.forEach(vm.sessions, function(session){
                 session.sessionTime = null;
                 sessionService.createSession(session).then(function (response) {
                     session.imported = true;
                 });
             });
+            logger.success('Sessions Imported', 'Success');
         }
     }
 })();

@@ -30,7 +30,7 @@
 
         function importFeed() {
             sessionService.importSessionData().then(function(response){
-
+                getSessions();
             });
         }
         function sessionsByDateAndRoom(cDate, room) {
@@ -55,6 +55,30 @@
                                                 _.sortBy(session.rooms,function(room) { return room.name;}),
                                                 'name')
                                                 .join(',');
+                        session.hasCollisions = function(){
+                            var hasCollision = false;
+                            var session = this;
+                            _.forEach(this.assignees, function(assignee){
+                                var assigneeSchedule = _.filter(vm.sessions, function(session){
+                                    return _.find(session.assignees, function(a){
+                                        return a.id === assignee.id;
+                                    });
+                                });
+
+                                var collision = _.find(assigneeSchedule, function(session2){
+                                    if(session.id === session2.id){ return false; }
+                                    var sessionRange1 = moment.range(session.sessionStartTime, session.sessionEndTime);
+                                    var sessionRange2 = moment.range(session2.sessionStartTime, session2.sessionEndTime);
+                                    return sessionRange1.overlaps(sessionRange2);
+                                });
+                                if(collision) {
+                                    hasCollision = true;
+                                }
+
+
+                            });
+                            return hasCollision;
+                        };
                     })
                     .value();
 
@@ -78,6 +102,10 @@
         }
 
         function getCardState(session) {
+            if(session.hasCollisions()){
+                return 'error';
+            }
+
             if(session.volunteersRequired === 0 && session.assignees.length > 0)
             {
                 return 'ok';

@@ -117,8 +117,12 @@
                 keyboard: false,
                 resolve: {}
             })
-                .result.then(function() {
-                logger.success('Users Imported', 'Success');
+                .result.then(function(imported) {
+                    if(imported)
+                    {
+                        getUsers();
+                    }
+
             });
         }
 

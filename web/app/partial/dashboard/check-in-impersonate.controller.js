@@ -1,19 +1,22 @@
 /* jshint -W117 */
+/* jshint -W072 */
 (function () {
     'use strict';
 
     angular
         .module('app.partial')
-        .controller('CheckInController', CheckInController);
+        .controller('CheckInImpersonateController', CheckInImpersonateController);
 
-    function CheckInController($q, logger, moment, $state, sessionService,
-                               userService, $interval, $scope, $uibModal) {
+    function CheckInImpersonateController($q, logger, moment, $state, sessionService,
+                               userService, $interval, $scope, $uibModal, sessionId, proctor, $uibModalInstance) {
         var vm = this;
         vm.title = 'Check In';
-        vm.sessionId = $state.params.sessionId;
+
+        vm.sessionId = sessionId;
         vm.session = null;
         vm.checkInTimer = null;
-        vm.userId = null;
+        vm.proctor = proctor;
+
 
         vm.checkInStatusColor = checkInStatusColor;
         vm.startTimeStatusColor = startTimeStatusColor;
@@ -25,6 +28,7 @@
         vm.formatDate = formatDate;
         vm.saveCheckInInfo = saveCheckInInfo;
         vm.pickAttendance = pickAttendance;
+        vm.ok = ok;
         vm.editCheckInInfo = editCheckInInfo;
 
         activate();
@@ -34,9 +38,8 @@
         });
 
         function activate() {
-            vm.userId = userService.user().userId;
             getCurrentSession();
-            //vm.checkInTimer = $interval(getCurrentSession, 10000);
+            vm.checkInTimer = $interval(getCurrentSession, 5000);
         }
 
         function getCurrentSession() {
@@ -47,7 +50,7 @@
 
         function checkInStatusColor() {
             if(vm.session && vm.session.proctorCheckIns && _.filter(vm.session.proctorCheckIns, function(proctor){
-                                                    return proctor.userId === userService.user().userId; }).length > 0)
+                    return proctor.userId === vm.proctor.id; }).length > 0)
             {
                 return "#666666";
             }
@@ -58,7 +61,7 @@
         function proctorCheckInTime(){
             if(!vm.session){ return null;}
             var proctor = _.first(vm.session.proctorCheckIns, function(proctor){
-                return proctor.userId === userService.user().userId;});
+                return proctor.userId === vm.proctor.id;});
             if(proctor){
                 return moment(proctor.checkInTime).format("hh:mm a");
             }
@@ -95,33 +98,23 @@
         }
 
         function checkIn() {
-            var proctor = _.first(vm.session.proctorCheckIns, function(proctor){
-                return proctor.userId === userService.user().userId;});
-
-            if(!proctor) {
-
-                var userCheckIn = {
-                    sessionId: vm.session.id,
-                    userId: userService.user().userId,
-                    checkInTime: moment().format("M/D/YYYY hh:mm a")
-                };
-                vm.session.proctorCheckIns.push(userCheckIn);
-                saveCheckInInfo();
-            }
+            var userCheckIn = {
+                sessionId: vm.session.id,
+                userId: vm.proctor.id,
+                checkInTime: moment().format("M/D/YYYY hh:mm a")
+            };
+            vm.session.proctorCheckIns.push(userCheckIn);
+            saveCheckInInfo();
         }
 
         function startSession() {
-            if(!vm.session.actualSessionStartTime) {
-                vm.session.actualSessionStartTime = moment().format("M/D/YYYY hh:mm a");
-                saveCheckInInfo();
-            }
+            vm.session.actualSessionStartTime = moment().format("M/D/YYYY hh:mm a");
+            saveCheckInInfo();
         }
 
         function endSession() {
-            if(!vm.session.actualSessionEndTime) {
-                vm.session.actualSessionEndTime = moment().format("M/D/YYYY hh:mm a");
-                saveCheckInInfo();
-            }
+            vm.session.actualSessionEndTime = moment().format("M/D/YYYY hh:mm a");
+            saveCheckInInfo();
         }
 
         function saveCheckInInfo() {
@@ -144,14 +137,18 @@
                 }
             })
                 .result.then(function(count) {
-                    if(type === '10In'){
-                        vm.session.attendees10 = count;
-                    }
-                    else{
-                        vm.session.attendees50 = count;
-                    }
-                    saveCheckInInfo();
+                if(type === '10In'){
+                    vm.session.attendees10 = count;
+                }
+                else{
+                    vm.session.attendees50 = count;
+                }
+                saveCheckInInfo();
             });
+        }
+
+        function ok() {
+            $uibModalInstance.close();
         }
 
         function editCheckInInfo() {
@@ -162,13 +159,24 @@
                 size: 'md',
                 resolve: {
                     session : vm.session,
-                    userId : function() { return vm.userId; }
+                    userId : function() { return vm.proctor.id; }
                 }
             })
                 .result.then(function(session) {
+                    vm.session.actualSessionEndTime = session.actualSessionEndTime;
+                    vm.session.actualSessionStartTime = session.actualSessionStartTime;
+
+                    var proctor = _.first(vm.session.proctorCheckIns, function(proctor){
+                                        return proctor.userId === vm.proctor.id;});
+                    var proctor2 = _.first(session.proctorCheckIns, function(proctor){
+                                        return proctor.userId === vm.proctor.id;});
+                    if(proctor) {
+                        proctor.checkInTime = proctor2.checkInTime;
+                    }
                 saveCheckInInfo();
             });
         }
     }
 })();
 /* jshint +W117 */
+/* jshint +W072 */

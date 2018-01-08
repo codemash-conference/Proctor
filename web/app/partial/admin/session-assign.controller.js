@@ -12,6 +12,10 @@
         vm.title = 'Assign Users to Session';
         vm.session = selectedSession;
         vm.users = [];
+        vm.loading = false;
+        vm.status = '';
+        vm.usersLoaded = [];
+
         vm.ok = ok;
         vm.cancel = cancel;
         vm.addUserToSession = addUserToSession;
@@ -22,7 +26,7 @@
         activate();
 
         function activate() {
-            getAvailableVolunteers();
+           getAvailableVolunteers();
         }
 
         function getAvailableVolunteers(role) {
@@ -54,11 +58,16 @@
         }
 
         function addAllUsers() {
+            vm.usersLoaded = [];
             _.forEach(vm.users, function(user){
                if(!_.find(vm.session.assignees, function(assignee){ return assignee.id === user.id; })){
                    sessionService.addUserToSession(vm.session.id, user.id).then(function(response) {
                        vm.session.assignees.push(user);
+                       vm.usersLoaded.push(user);
                    });
+               }
+               else{
+                   vm.usersLoaded.push(user);
                }
             });
         }

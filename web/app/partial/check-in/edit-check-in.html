@@ -1,0 +1,43 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="view-header">
+                    <div class="pull-right text-right" style="line-height: 14px">
+                    </div>
+                    <div class="header-icon">
+                        <i class="pe page-header-icon pe-7s-user"></i>
+                    </div>
+                    <div class="header-title">
+                        <h3>Edit Check In Info</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-filled">
+            <div class="panel-body">
+                <div class="form-group col-lg-6" ng-if="vm.proctorCheckInTimeRaw">
+                    <label>Check In Time</label>
+                    <input type="datetime-local" value="" ng-model="vm.proctorCheckInTimeRaw" id="proctorCheckIn" class="form-control" name="">
+                    <span class="help-block small">Time/Date you checked in.</span>
+                </div>
+                <div class="form-group col-lg-6" ng-if="vm.sessionStartTimeRaw">
+                    <label>Start Time</label>
+                    <input type="datetime-local" value="" ng-model="vm.sessionStartTimeRaw" id="sessionStartTime" class="form-control" name="">
+                    <span class="help-block small">Actual Time/Date the session started.</span>
+                </div>
+                <div class="form-group col-lg-6" ng-if="vm.sessionEndTimeRaw">
+                    <label>End Time</label>
+                    <input type="datetime-local" value="" ng-model="vm.sessionEndTimeRaw" id="sessionEndTime" class="form-control" name="">
+                    <span class="help-block small">Actual Time/Date the session ended.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-accent" ng-click="vm.cancel()">Cancel</button>
+        <button type="button" class="btn btn-accent" ng-click="vm.ok()">Save changes</button>
+    </div>
+</div>

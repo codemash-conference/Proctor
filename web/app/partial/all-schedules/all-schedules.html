@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="view-header">
+            <div class="pull-right text-right" style="line-height: 14px">
+            </div>
+            <div class="header-icon">
+                <i class="pe page-header-icon pe-7s-date"></i>
+            </div>
+            <div class="header-title">
+                <h3>All Schedules</h3>
+                <small>
+                    All User Schedules
+                </small>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+<div class="row" ng-repeat="user in vm.users | orderBy:'lastName'">
+    <div class="col-xs-12">
+        <div class="panel panel-filled">
+            <div class="panel-heading">
+                <div panel-tools></div>
+                {{user.lastName}}, {{user.firstName}}
+            </div>
+            <div class="panel-body">
+                <div >
+                    <div>Number of Sessions: {{user.sessions.length}}</div>
+                    <div>Duration - Hours: {{DurationHours}} Minutes: {{DurationMinutes}}</div>
+                    <div ng-repeat="(date,sessions) in user.sessions">
+                        <div class="scheduleDateHeader">{{date}}</div>
+                        <div class="scheduleSession" ng-repeat="session in sessions">
+                            <div class="scheduleTime">{{session.sessionStartTime | date:'h:mm a'}} to {{session.sessionEndTime | date:'h:mm a'}}</div>
+                            <div class="scheduleTitle">{{session.title}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

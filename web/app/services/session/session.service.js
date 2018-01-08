@@ -21,7 +21,8 @@
             getUserSchedule: getUserSchedule,
             getRooms: getRooms,
             addUserToSession: addUserToSession,
-            removeUserFromSession: removeUserFromSession
+            removeUserFromSession: removeUserFromSession,
+            getSessionResults: getSessionResults
         };
 
         return service;
@@ -150,6 +151,15 @@
             return $http.delete(apiUrl)
                 .then(function(response){
                     return response;
+                });
+        }
+
+        function getSessionResults() {
+            var apiUrl = config.apiUrl + '/api/Sessions/Results';
+
+            return $http.get(apiUrl)
+                .then(function(response){
+                    return response.data;
                 });
         }
     }

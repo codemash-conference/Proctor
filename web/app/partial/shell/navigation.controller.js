@@ -80,12 +80,16 @@
         }
 
         function menuSelect(selection, navSelected) {
-            if(selection === navSelected) {
+            var separateRoutes = selection.name.split('.');
+
+            if(selection.name === navSelected || separateRoutes[0] === navSelected) {
                 vm.navSelected = '';
             } else {
-                vm.navSelected = selection;
+                vm.navSelected = selection.name;
             }
-
+            if($("body").width() < 768 && !selection.abstract){
+                $("body").toggleClass("nav-toggle");
+            }
         }
 
         function cleanUp(){

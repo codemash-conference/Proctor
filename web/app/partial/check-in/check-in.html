@@ -25,6 +25,11 @@
                 Check In
             </div>
             <div class="panel-body">
+                <div ng-if="vm.session.sessionType !== 'Static Session'">
+                    <div>
+                        <button class="btn btn-accent" ng-click="vm.editCheckInInfo()">Edit</button>
+                    </div>
+                </div>
                 <div class="sessionStatusContainer">
                     <div ng-click="vm.checkIn()" id="checkInBtn" class="checkInBtn" style="background-color: {{vm.checkInStatusColor()}}">Check<br/>In</div>
                     <div class="statusTextTitle">Status</div>

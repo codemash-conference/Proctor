@@ -12,15 +12,11 @@
 }
 
 .checkedIn{
-    background-color: green;
+    border-color: green !important;
 }
 
 .checkedInPartial{
-    background-color: yellow;
-}
-
-.checkedInPartial{
-    background-color: lightgreen;
+    border-color: yellow !important;
 }
 
 .checkInStatusHeader{

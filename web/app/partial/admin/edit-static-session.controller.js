@@ -46,7 +46,7 @@
                 _.sortBy(vm.session.rooms,function(room) { return room.name;}),
                 'name')
                 .join(',');
-
+            vm.session.sessionTime = null;
             if(isAdd){
                 sessionService.createSession(vm.session).then(function (response) {
                     $uibModalInstance.close(response);

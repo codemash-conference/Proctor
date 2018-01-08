@@ -20,45 +20,46 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <div class="panel panel-filled" ng-repeat="(dates, sessions) in vm.sessions">
-            <div class="panel-heading">
-                <div panel-tools></div>
-                {{dates}}
-            </div>
+        <div class="panel" ng-repeat="(dates, sessions) in vm.sessions">
             <div class="panel-body">
-                <div ng-repeat="session in sessions">
+                <h3>{{dates}}</h3>
+                <hr>
+                <div class="row">
 
-                    <div class="checkInStatus {{vm.checkedInClass(session)}}" ng-if="vm.isCheckedIn(session)">
-                        <div class="checkInStatusHeader">{{session.roomString}}</div>
-                        <div class="checkInStatusText">CheckIn: {{session.proctorCheckIns[0].checkInTime | date:'h:mm a'}}</div>
-                        <div class="checkInStatusText proctors" ng-repeat="proctor in session.assignees" ng-bind-html="vm.getProctorStatus(session, proctor)"></div>
+                    <div class="col-md-{{vm.getColumnSize(session)}}" ng-repeat="session in sessions"
+                        >
+                        <div class="panel panel-filled {{vm.checkedInClass(session)}}" >
 
-                        <div ng-if="session.sessionType !== 'Static Session'">
-                            <div class="checkInStatusText">Start:{{session.sessionStartTime | date:'h:mm a'}}</div>
-                            <div class="checkInStatusText">End:{{session.sessionEndTime | date:'h:mm a'}}</div>
+                            <div class="panel-body">
+                                <h4 style="padding-bottom: 10px;height:60px;">{{session.title}}</h4>
 
-                            <div class="checkInStatusAttendance">
-                                <div class="checkInStatusAttendanceHeader">10 Min</div>
-                                <div class="checkInStatusAttendanceText">{{session.attendees10}}</div>
+                                <div ng-repeat="proctor in session.assignees" ng-click="vm.impersonateCheckIn(session, proctor)"
+                                style="float: left; text-align: center; width:75px; height: 105px;" class="text-center">
+                                    <i class="fa fa-user-circle {{vm.getProctorStatus(session, proctor)}} text- fa-3x" aria-hidden="true"></i>
+                                    <h6>{{proctor.firstName}}</h6>
+                                    <h6>{{proctor.lastName}}</h6>
+                                </div>
+                                <div style="float: left; padding-left: 20px;" ng-if="vm.isCheckedIn(session) && session.sessionType !== 'Static Session'">
+                                    <h6 style="margin-top: 0; margin-bottom: 5px;">Check In: {{session.proctorCheckIns[0].checkInTime | date:'h:mm a'}}</h6>
+                                    <h6 style="margin-top: 0; margin-bottom: 5px;">Start: {{session.actualSessionStartTime | date:'h:mm a'}}</h6>
+                                    <h6 style="margin-top: 0; margin-bottom: 5px;">End: {{session.actualSessionEndTime | date:'h:mm a'}}</h6>
+                                    <h6 style="margin-top: 0; margin-bottom: 5px;">10 Minutes In: {{session.attendees10}}</h6>
+                                    <h6 style="margin-top: 0; margin-bottom: 5px;">10 Minutes Till: {{session.attendees50}}</h6>
+                                </div>
+
+                                <div style="clear: both">
+                                    &nbsp;{{session.notes}}
+                                </div>
+
                             </div>
+                            <div class="panel-footer">
+                                <div class="pull-right text-right">
+                                    {{session.roomString}}
+                                </div>
+                                <div>{{session.sessionStartTime | date:'h:mm a'}} - {{session.sessionEndTime | date:'h:mm a'}}</div>
 
-                            <div class="checkInStatusAttendance">
-                                <div class="checkInStatusAttendanceHeader">10 Min Till</div>
-                                <div class="checkInStatusAttendanceText">{{session.attendees50}}</div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="checkInStatus" ng-if="!vm.isCheckedIn(session)">
-                        <div class="checkInStatusHeader">{{session.roomString}}</div>
-
-                        <div class="checkInStatusText" style="padding-top: 10px;">
-                            {{session.title}}
-                        </div>
-                        <div class="checkInStatusAttendanceText">
-                            {{session.sessionStartTime | date:'h:mm a'}}
-                        </div>
-                        <div class="checkInStatusText proctors" ng-repeat="proctor in session.assignees" ng-bind-html="vm.getProctorStatus(session, proctor)"></div>
                     </div>
                 </div>
             </div>
