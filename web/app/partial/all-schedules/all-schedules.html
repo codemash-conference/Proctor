@@ -26,8 +26,6 @@
             </div>
             <div class="panel-body">
                 <div >
-                    <div>Number of Sessions: {{user.sessions.length}}</div>
-                    <div>Duration - Hours: {{DurationHours}} Minutes: {{DurationMinutes}}</div>
                     <div ng-repeat="(date,sessions) in user.sessions">
                         <div class="scheduleDateHeader">{{date}}</div>
                         <div class="scheduleSession" ng-repeat="session in sessions">

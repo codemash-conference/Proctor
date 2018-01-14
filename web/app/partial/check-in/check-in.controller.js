@@ -57,10 +57,10 @@
 
         function proctorCheckInTime(){
             if(!vm.session){ return null;}
-            var proctor = _.first(vm.session.proctorCheckIns, function(proctor){
-                return proctor.userId === userService.user().userId;});
-            if(proctor){
-                return moment(proctor.checkInTime).format("hh:mm a");
+            var pt = _.find(vm.session.proctorCheckIns, function(p){
+                return p.userId === userService.user().userId;});
+            if(pt){
+                return moment(pt.checkInTime).format("hh:mm a");
             }
             else{
                 return null;
@@ -95,8 +95,8 @@
         }
 
         function checkIn() {
-            var proctor = _.first(vm.session.proctorCheckIns, function(proctor){
-                return proctor.userId === userService.user().userId;});
+            var proctor = _.find(vm.session.proctorCheckIns, function(p){
+                return p.userId === userService.user().userId;});
 
             if(!proctor) {
 

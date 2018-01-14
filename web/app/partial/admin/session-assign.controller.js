@@ -7,11 +7,11 @@
         .controller('SessionAssignController', SessionAssignController);
 
     function SessionAssignController($q, logger, moment, userService, sessionService,
-                                   $uibModalInstance, selectedSession, roleService) {
+                                   $uibModalInstance, selectedSession, availableUsers) {
         var vm = this;
         vm.title = 'Assign Users to Session';
         vm.session = selectedSession;
-        vm.users = [];
+        vm.users = availableUsers;
         vm.loading = false;
         vm.status = '';
         vm.usersLoaded = [];
@@ -26,15 +26,10 @@
         activate();
 
         function activate() {
-           getAvailableVolunteers();
+
         }
 
-        function getAvailableVolunteers(role) {
 
-            roleService.getUsersForRoleName('Everyone').then(function (data) {
-                vm.users = _.sortBy(data,function(user){ return user.lastName + ', ' + user.firstName; });
-            });
-        }
 
         function ok() {
             $uibModalInstance.close();

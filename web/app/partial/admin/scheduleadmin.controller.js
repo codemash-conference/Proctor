@@ -6,13 +6,15 @@
         .module('app.partial')
         .controller('ScheduleAdminController', ScheduleAdminController);
 
-    function ScheduleAdminController($q, sessionService, logger, moment, $uibModal) {
+    function ScheduleAdminController($q, sessionService, logger, moment,
+                                     $uibModal, roleService) {
         var vm = this;
         vm.title = 'User';
         vm.sessions = [];
         vm.currentDate = '';
         vm.dates = [];
         vm.rooms = [];
+        vm.users = [];
 
         vm.importFeed = importFeed;
         vm.autoAssign = autoAssign;
@@ -26,6 +28,7 @@
 
         function activate() {
             getSessions();
+            getAvailableVolunteers();
         }
 
         function importFeed() {
@@ -44,10 +47,12 @@
             sessionService.getSessions().then(function (data) {
                 var parsed = _.chain(data)
                     .filter(function(session) {
+                        var room = session.rooms[0] ? session.rooms[0].name : '';
                         return session.sessionType === 'General Session' ||
                             session.sessionType === 'Pre-Compiler' ||
                             session.sessionType === 'Static Session' ||
-                            session.sessionType === 'Sponsor Session';
+                            session.sessionType === 'Sponsor Session' ||
+                            room === 'Guava' || room === 'Tamarind';
                     })
                     .sortBy(function(session) { return session.sessionStartTime; })
                     .forEach(function(session) {
@@ -141,7 +146,8 @@
                 backdrop: 'static',
                 keyboard: false,
                 resolve: {
-                    selectedSession: s
+                    selectedSession: s,
+                    availableUsers: function() {return vm.users; }
                 }
             })
                 .result.then(function() {
@@ -152,6 +158,13 @@
         function autoAssign(){
             sessionService.autoAssignSessions().then(function(response){
                 getSessions();
+            });
+        }
+
+        function getAvailableVolunteers() {
+
+            roleService.getUsersForRoleName('Everyone').then(function (data) {
+                vm.users = _.sortBy(data,function(user){ return user.lastName + ', ' + user.firstName; });
             });
         }
     }

@@ -22,8 +22,8 @@
         appErrorPrefix: '[Error] ',
         appTitle: 'Proctor',
         //apiUrl: 'http://localhost:3012'
-        //apiUrl: 'http://localhost:53982/'
-        apiUrl: 'http://10.32.3.20:3012/'
+        apiUrl: 'http://localhost:53982/'
+        //apiUrl: 'http://10.32.3.20:3012/'
     };
 
 

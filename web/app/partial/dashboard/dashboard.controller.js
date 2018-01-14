@@ -38,7 +38,8 @@
                     .filter(function(session) {
                         return session.sessionType === 'General Session' ||
                             session.sessionType === 'Pre-Compiler' ||
-                            session.sessionType === 'Static Session';
+                            session.sessionType === 'Static Session' ||
+                            session.sessionType === 'Sponsor Session' ;
                     })
                     .filter(function(session) {
                         return moment(session.sessionStartTime).format("MM/DD/YYYY") === moment().format("MM/DD/YYYY");//'01/12/2018';
