@@ -1,2 +1,3 @@
-# HHTrain
-Used for training developers
+# Proctor
+Used for managing interns at CodeMash
+
