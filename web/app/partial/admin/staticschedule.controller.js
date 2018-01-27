@@ -6,7 +6,7 @@
         .module('app.partial')
         .controller('StaticScheduleController', StaticScheduleController);
 
-    function StaticScheduleController($q, sessionService, logger, $uibModal, messageBox) {
+    function StaticScheduleController($q, sessionService, logger, $uibModal, messageBox, $filter) {
         var vm = this;
         vm.title = 'User';
         vm.sessions = [];
@@ -24,12 +24,12 @@
         function getStaticSessions() {
             sessionService.getSessions().then(function (data) {
                vm.sessions = _.chain(data)
-                   .filter(function(session) { return session.sessionType === 'Static Session';})
-                   .sortBy(function (session) { return session.sessionStartTime;})
+                   .filter(function(session) { return session.SessionType.Name === 'Static Session';})
+                   .sortBy(function (session) { return session.SessionStartTime;})
                    .forEach(function(session) {
                        session.roomString =  _.map(
-                           _.sortBy(session.rooms,function(room) { return room.name;}),
-                           'name')
+                           _.sortBy(session.Rooms,function(room) { return room.Name;}),
+                           'Name')
                            .join(',');
                    }).value();
 
@@ -70,6 +70,11 @@
             })
                 .result.then(function(newSession) {
                     vm.sessions.push(newSession);
+                newSession.SessionStartTime =
+                    $filter('date')(moment(newSession.SessionStartTime).toDate(), 'M/d h:mm a');
+                newSession.SessionEndTime =
+                    $filter('date')(moment(newSession.SessionEndTime).toDate(), 'M/d h:mm a');
+
                     logger.success('Session Created', 'Success');
             });
 
@@ -89,6 +94,8 @@
                 }
             })
                 .result.then(function() {
+                    session.SessionStartTime = $filter('date')(moment(session.SessionStartTime).toDate(), 'M/d h:mm a');
+                    session.SessionEndTime = $filter('date')(moment(session.SessionEndTime).toDate(), 'M/d h:mm a');
                 logger.success('Session Updated', 'Success');
             });
         }

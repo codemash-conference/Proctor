@@ -57,7 +57,7 @@
         }
 
         function addUserToRole(userId, roleId) {
-            var apiUrl = config.apiUrl + '/api/Role/AddUserToRole?userId=' + userId + '&roleId=' + roleId;
+            var apiUrl = config.apiUrl + '/api/Roles/AddUserToRole?userId=' + userId + '&roleId=' + roleId;
 
             return $http.post(apiUrl)
                 .then(function(response){
@@ -66,7 +66,7 @@
         }
 
         function removeUserFromRole(userId, roleId) {
-            var apiUrl = config.apiUrl + '/api/Role/RemoveUserFromRole?userId=' + userId + '&roleId=' + roleId;
+            var apiUrl = config.apiUrl + '/api/Roles/RemoveUserFromRole?userId=' + userId + '&roleId=' + roleId;
 
             return $http.delete(apiUrl)
                 .then(function(response){
@@ -93,7 +93,7 @@
         }
 
         function updateUser(user) {
-            var apiUrl = config.apiUrl + '/api/Users/' + user.id;
+            var apiUrl = config.apiUrl + '/api/Users/' + user.Id;
 
             return $http.put(apiUrl, user)
                 .then(function(response){

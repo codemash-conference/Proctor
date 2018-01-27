@@ -38,7 +38,7 @@
         }
         function sessionsByDateAndRoom(cDate, room) {
             return _.filter(vm.sessions, function (session) {
-               return cDate === moment(session.sessionStartTime).format("M/D/YY") &&
+               return cDate === moment(session.SessionStartTime).format("M/D/YY") &&
                    room === session.roomString;
             });
         }
@@ -47,33 +47,33 @@
             sessionService.getSessions().then(function (data) {
                 var parsed = _.chain(data)
                     .filter(function(session) {
-                        var room = session.rooms[0] ? session.rooms[0].name : '';
-                        return session.sessionType === 'General Session' ||
-                            session.sessionType === 'Pre-Compiler' ||
-                            session.sessionType === 'Static Session' ||
-                            session.sessionType === 'Sponsor Session' ||
+                        var room = session.Rooms[0] ? session.Rooms[0].name : '';
+                        return session.SessionType.Name === 'General Session' ||
+                            session.SessionType.Name === 'Pre-Compiler' ||
+                            session.SessionType.Name === 'Static Session' ||
+                            session.SessionType.Name === 'Sponsor Session' ||
                             room === 'Guava' || room === 'Tamarind';
                     })
-                    .sortBy(function(session) { return session.sessionStartTime; })
+                    .sortBy(function(session) { return session.SessionStartTime; })
                     .forEach(function(session) {
                         session.roomString =  _.map(
-                                                _.sortBy(session.rooms,function(room) { return room.name;}),
-                                                'name')
+                                                _.sortBy(session.Rooms,function(room) { return room.Name;}),
+                                                'Name')
                                                 .join(',');
                         session.hasCollisions = function(){
                             var hasCollision = false;
                             var session = this;
-                            _.forEach(this.assignees, function(assignee){
+                            _.forEach(this.Assignees, function(assignee){
                                 var assigneeSchedule = _.filter(vm.sessions, function(session){
-                                    return _.find(session.assignees, function(a){
-                                        return a.id === assignee.id;
+                                    return _.find(session.Assignees, function(a){
+                                        return a.Id === assignee.Id;
                                     });
                                 });
 
                                 var collision = _.find(assigneeSchedule, function(session2){
-                                    if(session.id === session2.id){ return false; }
-                                    var sessionRange1 = moment.range(session.sessionStartTime, session.sessionEndTime);
-                                    var sessionRange2 = moment.range(session2.sessionStartTime, session2.sessionEndTime);
+                                    if(session.Id === session2.Id){ return false; }
+                                    var sessionRange1 = moment.range(session.SessionStartTime, session.SessionEndTime);
+                                    var sessionRange2 = moment.range(session2.SessionStartTime, session2.SessionEndTime);
                                     return sessionRange1.overlaps(sessionRange2);
                                 });
                                 if(collision) {
@@ -88,9 +88,9 @@
                     .value();
 
                 vm.dates = _.chain(parsed).uniqBy(function(session) {
-                    return moment(session.sessionStartTime).format("M/D/YY");
+                    return moment(session.SessionStartTime).format("M/D/YY");
                 })
-                    .map(function(session){ return moment(session.sessionStartTime).format("M/D/YY");})
+                    .map(function(session){ return moment(session.SessionStartTime).format("M/D/YY");})
                     .value();
 
                 vm.rooms = _.chain(parsed)
@@ -111,12 +111,12 @@
                 return 'error';
             }
 
-            if(session.volunteersRequired === 0 && session.assignees.length > 0)
+            if(session.VolunteersRequired === 0 && session.Assignees.length > 0)
             {
                 return 'ok';
             }
 
-            if(session.volunteersRequired >0 && session.assignees.length >= session.volunteersRequired)
+            if(session.VolunteersRequired >0 && session.Assignees.length >= session.VolunteersRequired)
             {
                 return 'ok';
             }
@@ -125,14 +125,14 @@
         }
 
         function getTop(session) {
-            var x = moment.duration(moment(session.sessionStartTime).format('HH:mm')) / 60000;
+            var x = moment.duration(moment(session.SessionStartTime).format('HH:mm')) / 60000;
             x = x - 375;
             return x.toString() + 'px';
         }
 
         function getHeight(session) {
-            var x = moment.duration(moment(session.sessionStartTime).format('HH:mm')) / 60000;
-            var y = moment.duration(moment(session.sessionEndTime).format('HH:mm')) / 60000;
+            var x = moment.duration(moment(session.SessionStartTime).format('HH:mm')) / 60000;
+            var y = moment.duration(moment(session.SessionEndTime).format('HH:mm')) / 60000;
             var z = (y - x);
             return z.toString() + 'px';
         }
@@ -164,7 +164,7 @@
         function getAvailableVolunteers() {
 
             roleService.getUsersForRoleName('Everyone').then(function (data) {
-                vm.users = _.sortBy(data,function(user){ return user.lastName + ', ' + user.firstName; });
+                vm.users = _.sortBy(data,function(user){ return user.LastName + ', ' + user.FirstName; });
             });
         }
     }

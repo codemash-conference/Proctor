@@ -16,7 +16,10 @@
                 session.rooms= [{ name: o[2] }];
                 session.title= o[3];
                 session.abstract= o[4];
-                session.sessionType= 'Static Session';
+                session.sessionType= {
+                    Id: 6,
+                    Name: 'Static Session'
+                };
                 session.volunteersRequired= o[6];
                 obj.push(session);
             });

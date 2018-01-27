@@ -46,8 +46,8 @@
         }
 
         function checkInStatusColor() {
-            if(vm.session && vm.session.proctorCheckIns && _.filter(vm.session.proctorCheckIns, function(proctor){
-                                                    return proctor.userId === userService.user().userId; }).length > 0)
+            if(vm.session && vm.session.ProctorCheckIns && _.filter(vm.session.ProctorCheckIns, function(proctor){
+                                                    return proctor.UserId === userService.user().UserId; }).length > 0)
             {
                 return "#666666";
             }
@@ -58,9 +58,9 @@
         function proctorCheckInTime(){
             if(!vm.session){ return null;}
             var pt = _.find(vm.session.proctorCheckIns, function(p){
-                return p.userId === userService.user().userId;});
+                return p.userId === userService.user().UserId;});
             if(pt){
-                return moment(pt.checkInTime).format("hh:mm a");
+                return moment(pt.CheckInTime).format("hh:mm a");
             }
             else{
                 return null;
@@ -78,8 +78,8 @@
         function startTimeStatusColor() {
 
             if (vm.session &&
-                vm.session.actualSessionStartTime &&
-                vm.session.actualSessionStartTime !== "") {
+                vm.session.ActualSessionStartTime &&
+                vm.session.ActualSessionStartTime !== "") {
                 return "#666666";
             }
             return '#f67e00';
@@ -87,39 +87,39 @@
 
         function endTimeStatusColor() {
             if (vm.session &&
-                vm.session.actualSessionEndTime &&
-                vm.session.actualSessionEndTime.sessionEndTime !== "") {
+                vm.session.ActualSessionEndTime &&
+                vm.session.ActualSessionEndTime.SessionEndTime !== "") {
                 return "#666666";
             }
             return '#f67e00';
         }
 
         function checkIn() {
-            var proctor = _.find(vm.session.proctorCheckIns, function(p){
-                return p.userId === userService.user().userId;});
+            var proctor = _.find(vm.session.ProctorCheckIns, function(p){
+                return p.UserId === userService.user().UserId;});
 
             if(!proctor) {
 
                 var userCheckIn = {
-                    sessionId: vm.session.id,
-                    userId: userService.user().userId,
-                    checkInTime: moment().format("M/D/YYYY hh:mm a")
+                    SessionId: vm.session.Id,
+                    UserId: userService.user().UserId,
+                    CheckInTime: moment().format("M/D/YYYY hh:mm a")
                 };
-                vm.session.proctorCheckIns.push(userCheckIn);
+                vm.session.ProctorCheckIns.push(userCheckIn);
                 saveCheckInInfo();
             }
         }
 
         function startSession() {
-            if(!vm.session.actualSessionStartTime) {
-                vm.session.actualSessionStartTime = moment().format("M/D/YYYY hh:mm a");
+            if(!vm.session.ActualSessionStartTime) {
+                vm.session.ActualSessionStartTime = moment().format("M/D/YYYY hh:mm a");
                 saveCheckInInfo();
             }
         }
 
         function endSession() {
-            if(!vm.session.actualSessionEndTime) {
-                vm.session.actualSessionEndTime = moment().format("M/D/YYYY hh:mm a");
+            if(!vm.session.ActualSessionEndTime) {
+                vm.session.ActualSessionEndTime = moment().format("M/D/YYYY hh:mm a");
                 saveCheckInInfo();
             }
         }
@@ -133,7 +133,7 @@
         }
 
         function pickAttendance(type) {
-            var attendanceCount = type === '10In' ? vm.session.attendees10 : vm.session.attendees50;
+            var attendanceCount = type === '10In' ? vm.session.Attendees10 : vm.session.Attendees50;
             $uibModal.open({
                 templateUrl: 'app/partial/check-in/attendance-picker.html',
                 controller: 'AttendancePickerController',
@@ -145,10 +145,10 @@
             })
                 .result.then(function(count) {
                     if(type === '10In'){
-                        vm.session.attendees10 = count;
+                        vm.session.Attendees10 = count;
                     }
                     else{
-                        vm.session.attendees50 = count;
+                        vm.session.Attendees50 = count;
                     }
                     saveCheckInInfo();
             });

@@ -21,10 +21,10 @@
             sessionService.getUserSchedule(userService.user().userId).then(
                 function (data) {
                     vm.schedule = data;
-                    vm.schedule.sessions = _.chain(vm.schedule.sessions)
-                        .sortBy(function(session) { return session.sessionStartTime; })
+                    vm.schedule.Sessions = _.chain(vm.schedule.Sessions)
+                        .sortBy(function(session) { return session.SessionStartTime; })
                         .groupBy(function (session) {
-                            return moment(session.sessionStartTime).format("M/D/YY");})
+                            return moment(session.SessionStartTime).format("M/D/YY");})
                         .value();
                 }
             );

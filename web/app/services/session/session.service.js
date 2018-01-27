@@ -46,7 +46,7 @@
         }
 
         function updateSession(session) {
-            var apiUrl = config.apiUrl + '/api/Sessions/' + session.id;
+            var apiUrl = config.apiUrl + '/api/Sessions/' + session.Id;
 
             return $http.put(apiUrl, session)
                 .then(function(response){
@@ -92,7 +92,7 @@
                 "rooms": [],
                 "title": "",
                 "abstract": "",
-                "sessionType": "Static Session",
+                "sessionType": {Name: "Static Session"},
                 "tags": null,
                 "category": "",
                 "speakers": null,
@@ -128,7 +128,7 @@
         }
 
         function getRooms() {
-            var apiUrl = config.apiUrl + '/api/Room';
+            var apiUrl = config.apiUrl + '/api/Rooms';
 
             return $http.get(apiUrl)
                 .then(function(response){

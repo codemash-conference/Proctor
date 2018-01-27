@@ -39,21 +39,21 @@
 
         function selectRole(role) {
             vm.currentRole = role;
-            roleService.getUsersForRole(role.id).then(function (data) {
+            roleService.getUsersForRole(role.Id).then(function (data) {
                 vm.users = data;
             });
         }
 
         function addUserToRole(user) {
-            userService.addUserToRole(user.id, vm.currentRole.id).then(function(data){
-                logger.success("Added user " + user.userName);
+            userService.addUserToRole(user.Id, vm.currentRole.Id).then(function(data){
+                logger.success("Added user " + user.UserName);
             });
 
         }
 
         function removeUserFromRole(user) {
-            userService.removeUserFromRole(user.id, vm.currentRole.id).then(function(data){
-                logger.success("Removed user " + user.userName);
+            userService.removeUserFromRole(user.Id, vm.currentRole.Id).then(function(data){
+                logger.success("Removed user " + user.UserName);
             });
         }
     }

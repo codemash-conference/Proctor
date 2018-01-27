@@ -20,7 +20,7 @@
         return service;
 
         function getRoles(){
-            var apiUrl = config.apiUrl + '/api/Role';
+            var apiUrl = config.apiUrl + '/api/Roles';
 
             return $http.get(apiUrl)
                 .then(function(response){
@@ -29,7 +29,7 @@
         }
 
         function getRoleById(id) {
-            var apiUrl = config.apiUrl + '/api/Role/' + id;
+            var apiUrl = config.apiUrl + '/api/Roles/' + id;
 
             return $http.get(apiUrl)
                 .then(function(response){
@@ -38,7 +38,7 @@
         }
 
         function createRole(roleName) {
-            var apiUrl = config.apiUrl + '/api/Role';
+            var apiUrl = config.apiUrl + '/api/Roles';
 
             return $http.post(apiUrl, roleName)
                 .then(function(response){
@@ -48,7 +48,7 @@
         }
 
         function updateRole(role) {
-            var apiUrl = config.apiUrl + '/api/Role';
+            var apiUrl = config.apiUrl + '/api/Roles';
 
             return $http.put(apiUrl, role)
                 .then(function(response){
@@ -57,7 +57,7 @@
         }
 
         function deleteRole(id) {
-            var apiUrl = config.apiUrl + '/api/Role/' + id;
+            var apiUrl = config.apiUrl + '/api/Roles/' + id;
 
             return $http.delete(apiUrl)
                 .then(function(response){
@@ -66,7 +66,7 @@
         }
 
         function getUsersForRole(id) {
-            var apiUrl = config.apiUrl + '/api/Role/GetUsersForRole?id=' + id;
+            var apiUrl = config.apiUrl + '/api/Roles/GetUsersForRole?id=' + id;
 
             return $http.get(apiUrl)
                 .then(function(response){
@@ -75,7 +75,7 @@
         }
 
         function getUsersForRoleName(name) {
-            var apiUrl = config.apiUrl + '/api/Role/GetUsersForRoleName?name=' + name;
+            var apiUrl = config.apiUrl + '/api/Roles/GetUsersForRoleName?name=' + name;
 
             return $http.get(apiUrl)
                 .then(function(response){

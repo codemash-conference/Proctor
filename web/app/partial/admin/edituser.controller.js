@@ -29,11 +29,11 @@
             }
             else {
                 userService.updateUser(vm.user).then(function (response) {
-                        vm.userOrig.cellNumber = vm.user.cellNumber;
-                        vm.userOrig.firstName = vm.user.firstName;
-                        vm.userOrig.lastName = vm.user.lastName;
-                        vm.userOrig.email = vm.user.email;
-                        vm.userOrig.userName = vm.user.userName;
+                        vm.userOrig.CellNumber = vm.user.CellNumber;
+                        vm.userOrig.FirstName = vm.user.FirstName;
+                        vm.userOrig.LastName = vm.user.LastName;
+                        vm.userOrig.Email = vm.user.Email;
+                        vm.userOrig.UserName = vm.user.UserName;
                         $uibModalInstance.close();
                     },
                     function (response) {

@@ -40,13 +40,13 @@
         }
 
         function removeUserFromSession(item) {
-            sessionService.removeUserFromSession(vm.session.id, item.id).then(function(response) {
+            sessionService.removeUserFromSession(vm.session.Id, item.Id).then(function(response) {
                 logger.success('Removed user from session');
             });
         }
 
         function addUserToSession(item) {
-            sessionService.addUserToSession(vm.session.id, item.id).then(function(response) {
+            sessionService.addUserToSession(vm.session.Id, item.Id).then(function(response) {
                 logger.success('Added user from session');
             });
 
@@ -55,9 +55,9 @@
         function addAllUsers() {
             vm.usersLoaded = [];
             _.forEach(vm.users, function(user){
-               if(!_.find(vm.session.assignees, function(assignee){ return assignee.id === user.id; })){
-                   sessionService.addUserToSession(vm.session.id, user.id).then(function(response) {
-                       vm.session.assignees.push(user);
+               if(!_.find(vm.session.Assignees, function(assignee){ return assignee.Id === user.Id; })){
+                   sessionService.addUserToSession(vm.session.Id, user.Id).then(function(response) {
+                       vm.session.Assignees.push(user);
                        vm.usersLoaded.push(user);
                    });
                }
@@ -69,11 +69,11 @@
 
         function removeAllUsers() {
             _.forEach(vm.users, function(user){
-                var assign = _.find(vm.session.assignees, function(assignee){ return assignee.id === user.id; });
+                var assign = _.find(vm.session.Assignees, function(assignee){ return assignee.Id === user.Id; });
                 if(assign){
-                    sessionService.removeUserFromSession(vm.session.id, user.id).then(function(response) {
-                        var index = vm.session.assignees.indexOf(assign);
-                        vm.session.assignees.splice(index, 1);
+                    sessionService.removeUserFromSession(vm.session.Id, user.Id).then(function(response) {
+                        var index = vm.session.Assignees.indexOf(assign);
+                        vm.session.Assignees.splice(index, 1);
                     });
                 }
             });

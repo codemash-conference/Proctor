@@ -31,25 +31,25 @@
                     </div>
                     <div class="form-group col-lg-6">
                         <label>Title</label>
-                        <input type="text" value="" ng-model="vm.session.title" id="title" class="form-control" name="">
+                        <input type="text" value="" ng-model="vm.session.Title" id="title" class="form-control" name="">
                         <span class="help-block small">Title of the session</span>
                     </div>
                     <div class="form-group col-lg-6">
                         <label>Abstract</label>
-                        <input type="" value="" ng-model="vm.session.abstract" id="abstract" class="form-control" name="">
+                        <input type="" value="" ng-model="vm.session.Abstract" id="abstract" class="form-control" name="">
                         <span class="help-block small">Abstract of the session</span>
                     </div>
                     <div class="form-group col-lg-6">
                         <label>Volunteers Required</label>
-                        <input type="number" min="0" max="100" value="" ng-model="vm.session.volunteersRequired" id="volunteersRequired" class="form-control" name="">
+                        <input type="number" min="0" max="100" value="" ng-model="vm.session.VolunteersRequired" id="volunteersRequired" class="form-control" name="">
                         <span class="help-block small">Number of volunteers required for the session</span>
                     </div>
                     <div class="form-group col-lg-6">
                         <label>Room(s)</label>
-                        <ui-select multiple ng-model="vm.session.rooms" theme="bootstrap">
-                            <ui-select-match placeholder="Select user...">{{$item.name}}</ui-select-match>
+                        <ui-select multiple ng-model="vm.session.Rooms" theme="bootstrap">
+                            <ui-select-match placeholder="Select room...">{{$item.Name}}</ui-select-match>
                             <ui-select-choices repeat="room in vm.rooms | filter:$select.search">
-                                {{room.name}}
+                                {{room.Name}}
                             </ui-select-choices>
                         </ui-select>
                     </div>

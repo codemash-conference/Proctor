@@ -28,15 +28,17 @@
         <div class="panel panel-filled">
             <div class="panel-body">
                 <div class="row">
-                    <div>{{vm.session.title}}</div>
-                    <div>Volunteers Needed: {{vm.session.volunteersRequired}}</div>
+                    <div>{{vm.session.Title}}</div>
+                    <div>Start: {{vm.session.SessionStartTime | date:'h:mm a'}}</div>
+                    <div>End: {{vm.session.SessionEndTime | date:'h:mm a'}}</div>
+                    <div>Volunteers Needed: {{vm.session.VolunteersRequired}}</div>
 
-                    <ui-select multiple ng-model="vm.session.assignees" theme="bootstrap"
+                    <ui-select multiple ng-model="vm.session.Assignees" theme="bootstrap"
                                on-select="vm.addUserToSession($item)"
                                on-remove="vm.removeUserFromSession($item)">
-                        <ui-select-match placeholder="Select user...">{{$item.lastName}}, {{$item.firstName}}</ui-select-match>
+                        <ui-select-match placeholder="Select user...">{{$item.LastName}}, {{$item.FirstName}}</ui-select-match>
                         <ui-select-choices repeat="user in vm.users | filter:$select.search">
-                            {{user.lastName}}, {{user.firstName}}
+                            {{user.LastName}}, {{user.FirstName}}
                         </ui-select-choices>
                     </ui-select>
 

@@ -26,7 +26,7 @@
             </div>
             <div class="panel-body">
                 <div ng-repeat="role in vm.roles">
-                    <div ng-click="vm.selectRole(role)" ng-style="">{{role.name}}</div>
+                    <div ng-click="vm.selectRole(role)" ng-style="">{{role.Name}}</div>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
             <div class="panel-body">
                 <form>
                     <div class="form-group"><label for="exampleInputName">Role Name</label> <input type="text"
-                                                                                                   ng-model="vm.currentRole.name"
+                                                                                                   ng-model="vm.currentRole.Name"
                                                                                                     class="form-control"
                                                                                                     id="exampleInputName"
                                                                                                     placeholder="Role Name">
@@ -52,9 +52,9 @@
                     <ui-select multiple ng-model="vm.users" theme="bootstrap"
                                on-select="vm.addUserToRole($item)"
                                on-remove="vm.removeUserFromRole($item)">
-                        <ui-select-match placeholder="Select user...">{{$item.firstName}} {{$item.lastName}}</ui-select-match>
+                        <ui-select-match placeholder="Select user...">{{$item.FirstName}} {{$item.LastName}}</ui-select-match>
                         <ui-select-choices repeat="user in vm.allUsers | filter:$select.search">
-                            {{user.firstName}} {{user.lastName}} ({{user.userName}})
+                            {{user.FirstName}} {{user.LastName}} ({{user.UserName}})
                         </ui-select-choices>
                     </ui-select>
                 </form>

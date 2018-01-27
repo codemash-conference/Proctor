@@ -47,7 +47,7 @@
 
         function deleteUser(user) {
             messageBox.confirmDialog('Delete User', 'Are you sure you want to delete this user?', function () {
-                userService.deleteUser(user.id).then(function(){
+                userService.deleteUser(user.Id).then(function(){
                     getUsers();
                 });
             });
