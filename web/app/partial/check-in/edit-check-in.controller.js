@@ -21,35 +21,35 @@
         activate();
 
         function activate() {
-            if(vm.session.actualSessionStartTime){
-                vm.sessionStartTimeRaw = moment(vm.session.actualSessionStartTime).toDate();
+            if(vm.session.ActualSessionStartTime){
+                vm.sessionStartTimeRaw = moment(vm.session.ActualSessionStartTime).toDate();
             }
-            if(vm.session.actualSessionEndTime) {
-                vm.sessionEndTimeRaw = moment(vm.session.actualSessionEndTime).toDate();
+            if(vm.session.ActualSessionEndTime) {
+                vm.sessionEndTimeRaw = moment(vm.session.ActualSessionEndTime).toDate();
             }
-            var proctor = _.first(vm.session.proctorCheckIns, function(proctor){
-                return proctor.userId === vm.userId;});
+            var proctor = _.first(vm.session.ProctorCheckIns, function(proctor){
+                return proctor.UserId === vm.userId;});
 
             if(proctor){
-                vm.proctorCheckInTimeRaw = moment(proctor.checkInTime).toDate();
+                vm.proctorCheckInTimeRaw = moment(proctor.CheckInTime).toDate();
             }
         }
 
         function ok() {
             if(moment(vm.sessionStartTimeRaw).isValid()) {
-                vm.origSession.actualSessionStartTime = moment(vm.sessionStartTimeRaw).format("M/D/YYYY HH:mm:ss");
-            } else { vm.origSession.actualSessionStartTime = null; }
+                vm.origSession.ActualSessionStartTime = moment(vm.sessionStartTimeRaw).format("M/D/YYYY HH:mm:ss");
+            } else { vm.origSession.ActualSessionStartTime = null; }
 
             if(moment(vm.sessionEndTimeRaw).isValid()) {
-                vm.origSession.actualSessionEndTime = moment(vm.sessionEndTimeRaw).format("M/D/YYYY HH:mm:ss");
-            } else { vm.origSession.actualSessionEndTime = null;}
+                vm.origSession.ActualSessionEndTime = moment(vm.sessionEndTimeRaw).format("M/D/YYYY HH:mm:ss");
+            } else { vm.origSession.ActualSessionEndTime = null;}
 
-            var proctor = _.first(vm.origSession.proctorCheckIns, function(proctor){
-                return proctor.userId === vm.userId;});
+            var proctor = _.first(vm.origSession.ProctorCheckIns, function(proctor){
+                return proctor.UserId === vm.userId;});
 
             if(moment(vm.proctorCheckInTimeRaw).isValid()) {
-                proctor.checkInTime = moment(vm.proctorCheckInTimeRaw).format("M/D/YYYY HH:mm:ss");
-            } else { proctor.checkInTime = null; }
+                proctor.CheckInTime = moment(vm.proctorCheckInTimeRaw).format("M/D/YYYY HH:mm:ss");
+            } else { proctor.CheckInTime = null; }
 
             $uibModalInstance.close(vm.origSession);
         }

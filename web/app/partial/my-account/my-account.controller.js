@@ -29,12 +29,12 @@
 
             userService.updateUser(vm.user).then(function (response) {
                    //userService.user()
-                    localStorageService.set('email', vm.user.email);
-                    localStorageService.set('firstName', vm.user.firstName);
-                    localStorageService.set('lastName', vm.user.lastName);
-                    localStorageService.set('gravatar', vm.user.gravatar);
-                    localStorageService.set('cell', vm.user.cellNumber);
-                    localStorageService.set('userId', vm.user.id);
+                    localStorageService.set('email', vm.user.Email);
+                    localStorageService.set('firstName', vm.user.FirstName);
+                    localStorageService.set('lastName', vm.user.LastName);
+                    localStorageService.set('gravatar', vm.user.Gravatar);
+                    localStorageService.set('cell', vm.user.CellNumber);
+                    localStorageService.set('userId', vm.user.Id);
                     localStorageService.set('userObj', vm.user);
                    logger.success("Saved my account settings.");
                 },

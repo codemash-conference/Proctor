@@ -20,15 +20,15 @@
         function getSessionsPerUser() {
             sessionService.getSessionsPerUser().then(function(data){
                 vm.users = _.filter(data, function (user) {
-                    return user.sessions.length > 0;
+                    return user.Sessions.length > 0;
                 });
 
                 if(vm.users.length>0) {
                     vm.users = _.forEach(vm.users, function (user) {
-                        user.sessions = _.chain(user.sessions)
-                            .sortBy(function(session) { return session.sessionStartTime; })
+                        user.Sessions = _.chain(user.Sessions)
+                            .sortBy(function(session) { return session.SessionStartTime; })
                             .groupBy(function (session) {
-                                return moment(session.sessionStartTime).format("M/D/YY");})
+                                return moment(session.SessionStartTime).format("M/D/YY");})
                             .value();
                     });
                 }

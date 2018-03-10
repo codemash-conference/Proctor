@@ -18,7 +18,7 @@
     <div class="modal-body">
         <div class="panel panel-filled" style="background-color: red">
             <div class="panel-body text-center">
-                <h3>Impersonating {{vm.proctor.firstName}} {{vm.proctor.lastName}}!</h3>
+                <h3>Impersonating {{vm.proctor.FirstName}} {{vm.proctor.LastName}}!</h3>
             </div>
         </div>
         <div class="panel panel-filled">
@@ -27,7 +27,7 @@
                 Check In
             </div>
             <div class="panel-body">
-                <div ng-if="vm.session.sessionType !== 'Static Session'">
+                <div ng-if="vm.session.SessionType.Name !== 'Static Session'">
                     <div>
                         <button class="btn btn-accent" ng-click="vm.editCheckInInfo()">Edit</button>
                     </div>
@@ -37,36 +37,36 @@
                     <div class="statusTextTitle">Status</div>
                     <div class="statusText">{{vm.proctorCheckInTime()}}</div>
                 </div>
-                <div ng-if="vm.session.sessionType !== 'Static Session'">
+                <div ng-if="vm.session.SessionType.Name !== 'Static Session'">
 
                     <div class="sessionStatusContainer">
                         <div ng-click="vm.startSession()" id="startTime" class="checkInBtn" style="background-color: {{vm.startTimeStatusColor()}}">Session<br/>Start</div>
                         <div class="statusTextTitle">Start Time</div>
-                        <div class="statusText">{{vm.formatDate(vm.session.actualSessionStartTime)}}</div>
+                        <div class="statusText">{{vm.formatDate(vm.session.ActualSessionStartTime)}}</div>
                     </div>
 
                     <div class="sessionStatusContainer">
                         <div ng-click="vm.endSession()" id="endTime" class="checkInBtn" style="background-color: {{vm.endTimeStatusColor()}}">Session<br/>End</div>
                         <div class="statusTextTitle">End Time</div>
-                        <div class="statusText">{{vm.formatDate(vm.session.actualSessionEndTime)}}</div>
+                        <div class="statusText">{{vm.formatDate(vm.session.ActualSessionEndTime)}}</div>
                     </div>
 
                     <div style="clear: both">
 
                         <div class="sessionStatusContainer">
-                            <div id="attendees10" class="attendanceBubble" ng-click="vm.pickAttendance('10In')">{{vm.session.attendees10}}</div>
+                            <div id="attendees10" class="attendanceBubble" ng-click="vm.pickAttendance('10In')">{{vm.session.Attendees10}}</div>
                             <div class="statusTextTitle">10 Minute</div>
                         </div>
 
                         <div class="sessionStatusContainer">
-                            <div id="attendees50" class="attendanceBubble" ng-click="vm.pickAttendance('10Till')">{{vm.session.attendees50}}</div>
+                            <div id="attendees50" class="attendanceBubble" ng-click="vm.pickAttendance('10Till')">{{vm.session.Attendees50}}</div>
                             <div class="statusTextTitle">10 Till End</div>
                         </div>
 
                     </div>
                     <div style="clear: both; padding-top: 10px">
                         <div>Notes:</div>
-                        <textarea id="notes" rows="4" ng-model="vm.session.notes" ng-blur="vm.saveCheckInInfo()"
+                        <textarea id="notes" rows="4" ng-model="vm.session.Notes" ng-blur="vm.saveCheckInInfo()"
                                   style="border-radius: 10px; width: 100%; color: #000"></textarea>
                     </div>
 
@@ -82,16 +82,16 @@
             <div class="panel-body">
                 <div class="sessionInfo">
 
-                    <div class="schedule-session-title">{{vm.session.title}}</div>
-                    <div ng-if="vm.session.sessionType !== 'Static Session'">
+                    <div class="schedule-session-title">{{vm.session.Title}}</div>
+                    <div ng-if="vm.session.SessionType.Name !== 'Static Session'">
 
                         <div class="schedule-session-heading">Speaker(s):</div>
 
                         <div class="schedule-session-speakers-container">
-                            <div class="schedule-session-speaker-container" ng-repeat="speaker in vm.session.speakers">
+                            <div class="schedule-session-speaker-container" ng-repeat="speaker in vm.session.Speakers">
                                 <div class="schedule-session-speaker">
-                                    <img class="schedule-session-speaker-pic" src="{{speaker.gravatarUrl}}" />
-                                    <div class="schedule-speaker-room">{{speaker.firstName}} {{speaker.lastName}}</div>
+                                    <img class="schedule-session-speaker-pic" src="{{speaker.GravatarUrl}}" />
+                                    <div class="schedule-speaker-room">{{speaker.FirstName}} {{speaker.LastName}}</div>
                                 </div>
                             </div>
                         </div>
@@ -99,11 +99,11 @@
                     <div style="clear: both"></div>
 
                     <div class="schedule-session-heading">Time:</div>
-                    <div class="schedule-speaker-room">{{vm.session.sessionStartTime | date:"h:mm a"}} - {{vm.session.sessionEndTime | date:"h:mm a"}}</div>
+                    <div class="schedule-speaker-room">{{vm.session.SessionStartTime | date:"h:mm a"}} - {{vm.session.SessionEndTime | date:"h:mm a"}}</div>
                     <div class="schedule-session-heading">Room:</div>
-                    <div class="schedule-speaker-room" ng-repeat="room in vm.session.rooms">{{room.name}}</div>
+                    <div class="schedule-speaker-room" ng-repeat="room in vm.session.Rooms">{{room.Name}}</div>
                     <div class="schedule-session-heading">Description:</div>
-                    <div class="schedule-session-description">{{vm.session.abstract}}</div>
+                    <div class="schedule-session-description">{{vm.session.Abstract}}</div>
                 </div>
             </div>
         </div>

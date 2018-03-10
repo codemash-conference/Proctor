@@ -47,7 +47,7 @@
 
         function checkInStatusColor() {
             if(vm.session && vm.session.ProctorCheckIns && _.filter(vm.session.ProctorCheckIns, function(proctor){
-                                                    return proctor.UserId === userService.user().UserId; }).length > 0)
+                                                    return proctor.UserId === userService.user().userId; }).length > 0)
             {
                 return "#666666";
             }
@@ -57,8 +57,8 @@
 
         function proctorCheckInTime(){
             if(!vm.session){ return null;}
-            var pt = _.find(vm.session.proctorCheckIns, function(p){
-                return p.userId === userService.user().UserId;});
+            var pt = _.find(vm.session.ProctorCheckIns, function(p){
+                return p.UserId === userService.user().userId;});
             if(pt){
                 return moment(pt.CheckInTime).format("hh:mm a");
             }
@@ -96,13 +96,13 @@
 
         function checkIn() {
             var proctor = _.find(vm.session.ProctorCheckIns, function(p){
-                return p.UserId === userService.user().UserId;});
+                return p.UserId === userService.user().userId;});
 
             if(!proctor) {
 
                 var userCheckIn = {
                     SessionId: vm.session.Id,
-                    UserId: userService.user().UserId,
+                    UserId: userService.user().userId,
                     CheckInTime: moment().format("M/D/YYYY hh:mm a")
                 };
                 vm.session.ProctorCheckIns.push(userCheckIn);

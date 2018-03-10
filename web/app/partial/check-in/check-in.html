@@ -35,7 +35,7 @@
                     <div class="statusTextTitle">Status</div>
                     <div class="statusText">{{vm.proctorCheckInTime()}}</div>
                 </div>
-                <div ng-if="vm.session.SessionType.Namegit  !== 'Static Session'">
+                <div ng-if="vm.session.SessionType.Name  !== 'Static Session'">
 
                 <div class="sessionStatusContainer">
                     <div ng-click="vm.startSession()" id="startTime" class="checkInBtn" style="background-color: {{vm.startTimeStatusColor()}}">Session<br/>Start</div>

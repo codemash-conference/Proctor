@@ -20,10 +20,10 @@
         function getSessionsPerUser() {
             sessionService.getSessionsPerUser().then(function(data){
                 vm.users = _.forEach(data, function (user) {
-                    user.sessions = _.chain(user.sessions)
-                        .sortBy(function(session) { return session.sessionStartTime; })
+                    user.Sessions = _.chain(user.Sessions)
+                        .sortBy(function(session) { return session.SessionStartTime; })
                         .groupBy(function (session) {
-                            return moment(session.sessionStartTime).format("M/D/YY");})
+                            return moment(session.SessionStartTime).format("M/D/YY");})
                         .value();
                 });
             });

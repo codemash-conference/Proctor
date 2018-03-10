@@ -36,22 +36,22 @@
             sessionService.getSessions().then(function (data) {
                 var parsed = _.chain(data)
                     .filter(function(session) {
-                        return session.sessionType === 'General Session' ||
-                            session.sessionType === 'Pre-Compiler' ||
-                            session.sessionType === 'Static Session' ||
-                            session.sessionType === 'Sponsor Session' ;
+                        return session.SessionType.Name === 'General Session' ||
+                            session.SessionType.Name === 'Pre-Compiler' ||
+                            session.SessionType.Name === 'Static Session' ||
+                            session.SessionType.Name === 'Sponsor Session' ;
                     })
                     .filter(function(session) {
-                        return moment(session.sessionStartTime).format("MM/DD/YYYY") === moment().format("MM/DD/YYYY");//'01/12/2018';
+                        return moment(session.SessionStartTime).format("MM/DD/YYYY") === moment('01/12/2018').format("MM/DD/YYYY");//'01/12/2018';
                     })
-                    .sortBy(function(session) { return session.sessionStartTime; })
+                    .sortBy(function(session) { return session.SessionStartTime; })
                     .forEach(function(session) {
                         session.roomString =  _.map(
-                            _.sortBy(session.rooms,function(room) { return room.name;}),
-                            'name')
+                            _.sortBy(session.Rooms,function(room) { return room.Name;}),
+                            'Name')
                             .join(',');
                     })
-                    .groupBy(function(session) { return moment(session.sessionStartTime).format('h:mm A'); })
+                    .groupBy(function(session) { return moment(session.SessionStartTime).format('h:mm A'); })
                     .value();
                 vm.lastUpdateTime = moment().format("M/D/YY h:mm:ss a");
                 vm.sessions = parsed;
@@ -61,7 +61,7 @@
         function getProctorStatus(session, proctor) {
             var proctorString = '';
 
-            if(_.find(session.proctorCheckIns, {userId:proctor.id})) {
+            if(_.find(session.ProctorCheckIns, {UserId:proctor.Id})) {
                 proctorString += 'text-success';
             }
             else {
@@ -72,25 +72,25 @@
         }
 
         function isCheckedIn(session) {
-            return session.proctorCheckIns.length > 0;
+            return session.ProctorCheckIns.length > 0;
         }
 
         function checkedInClass(session) {
-            if(session.proctorCheckIns.length === 0) { return  '';}
-            if(session.assignees.length !== session.proctorCheckIns.length){
+            if(session.ProctorCheckIns.length === 0) { return  '';}
+            if(session.Assignees.length !== session.ProctorCheckIns.length){
                 return 'checkedInPartial';
             }
             return 'checkedIn';
         }
 
         function getSessionStatus(session){
-            if (session.proctorCheckIns.length === 0) {
+            if (session.ProctorCheckIns.length === 0) {
                 return "Not Started";
             }
-            else if (session.proctorCheckIns.length > 0 && session.actualSessionStartTime === null) {
+            else if (session.ProctorCheckIns.length > 0 && session.ActualSessionStartTime === null) {
                 return "Checked In";
             }
-            else if (session.proctorCheckIns.length > 0 && session.actualSessionStartTime !== null && session.actualSessionEndTime === null) {
+            else if (session.ProctorCheckIns.length > 0 && session.ActualSessionStartTime !== null && session.ActualSessionEndTime === null) {
                 return "Started";
             }
             else {
@@ -99,8 +99,8 @@
         }
 
         function getColumnSize(session) {
-            if(session.assignees.length <= 3) { return '3';}
-            if(session.assignees.length <= 6) { return '4';}
+            if(session.Assignees.length <= 3) { return '3';}
+            if(session.Assignees.length <= 6) { return '4';}
             return '12';
         }
 
@@ -111,7 +111,7 @@
                 controllerAs: 'vm',
                 size: 'lg',
                 resolve: {
-                    sessionId: session.id,
+                    sessionId: session.Id,
                     proctor: proctor,
                     isImpersonate : true
                 }
