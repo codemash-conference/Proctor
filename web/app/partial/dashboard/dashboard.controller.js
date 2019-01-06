@@ -6,18 +6,20 @@
         .module('app.partial')
         .controller('DashboardController', DashboardController);
 
-    function DashboardController($q, $scope, sessionService, logger, moment, $interval, $window, $uibModal) {
+    function DashboardController($q, $scope, sessionService, logger, moment, $interval, $window, $uibModal, roleService) {
         var vm = this;
         vm.title = 'Dashboard';
         vm.sessions = [];
         vm.dashboardTimer = null;
         vm.lastUpdateTime = moment().format("M/D/YY h:mm:ss a");
+        vm.users = [];
 
         vm.getProctorStatus = getProctorStatus;
         vm.isCheckedIn = isCheckedIn;
         vm.checkedInClass = checkedInClass;
         vm.getColumnSize = getColumnSize;
         vm.impersonateCheckIn = impersonateCheckIn;
+        vm.reassignSession = reassignSession;
 
         activate();
 
@@ -29,6 +31,7 @@
         function activate() {
             $window.Pace.options.ajax.ignoreURLs = ['/api/Sessions'];
             getSessions();
+            getAvailableVolunteers();
             vm.dashboardTimer = $interval(getSessions, 5000);
         }
 
@@ -38,11 +41,12 @@
                     .filter(function(session) {
                         return session.SessionType.Name === 'General Session' ||
                             session.SessionType.Name === 'Pre-Compiler' ||
+                            session.SessionType.Name === 'PreCompiler' ||
                             session.SessionType.Name === 'Static Session' ||
                             session.SessionType.Name === 'Sponsor Session' ;
                     })
                     .filter(function(session) {
-                        return moment(session.SessionStartTime).format("MM/DD/YYYY") === moment('01/12/2018').format("MM/DD/YYYY");//'01/12/2018';
+                        return moment(session.SessionStartTime).format("MM/DD/YYYY") === moment().format("MM/DD/YYYY");//'01/12/2018';
                     })
                     .sortBy(function(session) { return session.SessionStartTime; })
                     .forEach(function(session) {
@@ -118,6 +122,32 @@
             })
                 .result.then(function() {
 
+            });
+        }
+
+
+        function reassignSession(s){
+            $uibModal.open({
+                templateUrl: 'app/partial/admin/session-assign.html',
+                controller: 'SessionAssignController',
+                controllerAs: 'vm',
+                size: 'lg',
+                backdrop: 'static',
+                keyboard: false,
+                resolve: {
+                    selectedSession: s,
+                    availableUsers: function() {return vm.users; }
+                }
+            })
+                .result.then(function() {
+                logger.success('Sessions assigned', 'Success');
+            });
+        }
+
+        function getAvailableVolunteers() {
+
+            roleService.getUsersForRoleName('Everyone').then(function (data) {
+                vm.users = _.sortBy(data,function(user){ return user.LastName + ', ' + user.FirstName; });
             });
         }
     }

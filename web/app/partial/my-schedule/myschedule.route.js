@@ -5,13 +5,6 @@
         .module('app.partial')
         .config(function($stateProvider) {
             $stateProvider
-                .state('home', {
-                    url: '',
-                    templateUrl: 'app/partial/my-schedule/myschedule.html',
-                    controller: 'MyScheduleController',
-                    controllerAs: 'vm',
-                    title: 'My Schedule'
-                })
                 .state('myschedule', {
                     url: '/myschedule',
                     templateUrl: 'app/partial/my-schedule/myschedule.html',

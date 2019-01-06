@@ -31,10 +31,13 @@
                         <div class="panel panel-filled {{vm.checkedInClass(session)}}" >
 
                             <div class="panel-body">
-                                <h4 style="padding-bottom: 10px;height:60px;">{{session.Title}}</h4>
+                                <h4 style="padding-bottom: 10px;height:60px;">{{session.Title}}
+                                    <div style="font-size: 12px;cursor: pointer" ng-click="vm.reassignSession(session)">Reassign</div>
+                                </h4>
+
 
                                 <div ng-repeat="proctor in session.Assignees" ng-click="vm.impersonateCheckIn(session, proctor)"
-                                style="float: left; text-align: center; width:75px; height: 105px;" class="text-center">
+                                style="float: left; text-align: center; width:75px; height: 105px;cursor: pointer" class="text-center">
                                     <i class="fa fa-user-circle {{vm.getProctorStatus(session, proctor)}} text- fa-3x" aria-hidden="true"></i>
                                     <h6>{{proctor.FirstName}}</h6>
                                     <h6>{{proctor.LastName}}</h6>

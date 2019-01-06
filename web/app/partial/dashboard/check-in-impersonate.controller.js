@@ -101,7 +101,11 @@
             var userCheckIn = {
                 sessionId: vm.session.Id,
                 userId: vm.proctor.Id,
-                checkInTime: moment().format("M/D/YYYY hh:mm a")
+                checkInTime: moment().format("M/D/YYYY hh:mm a"),
+                SessionId: vm.session.Id,
+                UserId: vm.proctor.Id,
+                CheckInTime: moment().format("M/D/YYYY hh:mm a")
+
             };
             vm.session.ProctorCheckIns.push(userCheckIn);
             saveCheckInInfo();

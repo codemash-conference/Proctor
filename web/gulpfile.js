@@ -7,7 +7,9 @@ var gulp = require('gulp');
 var path = require('path');
 var rename = require('gulp-rename');
 var _ = require('lodash');
-var $ = require('gulp-load-plugins')({lazy: true});
+var $ = require('gulp-load-plugins')({lazy: true})
+var gutil = require( 'gulp-util' );
+var ftp = require( 'vinyl-ftp' );
 
 var colors = $.util.colors;
 var envenv = $.util.env;
@@ -364,19 +366,73 @@ gulp.task('serve-dev', ['inject'], function() {
 });
 
 /**
- * serve the build environment
- * --debug-brk or --debug
- * --nosync
+ * deploy to production
  */
-gulp.task('serve-build', ['build'], function() {
-  gulp.src('')
-  .pipe(server({
-      livereload: true,
-      directoryListing: false,
-      open: true,
-      port: config.defaultPort,
-      defaultFile: 'index.html'
-  }));
+gulp.task('deploy-prod', ['build'], function() {
+    log('Deploying to production');
+
+    var msg = {
+        title: 'gulp deploy-prod',
+        subtitle: 'Deployed to production',
+        message: 'Deployed to production'
+    };
+
+    var conn = ftp.create( {
+        host:     'waws-prod-ch1-005.ftp.azurewebsites.windows.net',
+        user:     'cmprod-volunteers\\$cmprod-volunteers',
+        password: 'fLNe7AbWyGtuMM4fD1JjLPSxoJpduWeej8i0vLla1YtZuNQHKn8szq9rW5Lw',
+        parallel: 10,
+        log:      gutil.log
+    } );
+
+    var globs = [
+        './build/**'
+    ];
+
+    // using base = '.' will transfer everything to /public_html correctly
+    // turn off buffering in gulp.src for best performance
+
+    gulp.src( globs, { base: './build/', buffer: false } )
+        .pipe( conn.newer( '/site/wwwroot' ) ) // only upload newer files
+        .pipe( conn.dest( '/site/wwwroot' ) );
+
+    //del(config.temp);
+    notify(msg);
+});
+
+/**
+ * deploy to dev
+ */
+gulp.task('deploy-dev', ['build'], function() {
+    log('Deploying to dev');
+
+    var msg = {
+        title: 'gulp deploy-dev',
+        subtitle: 'Deployed to dev',
+        message: 'Deployed to dev'
+    };
+
+    var conn = ftp.create( {
+        host:     'waws-prod-ch1-005.ftp.azurewebsites.windows.net',
+        user:     'cmprod-volunteers\\$cmprod-volunteers',
+        password: 'fLNe7AbWyGtuMM4fD1JjLPSxoJpduWeej8i0vLla1YtZuNQHKn8szq9rW5Lw',
+        parallel: 10,
+        log:      gutil.log
+    } );
+
+    var globs = [
+        './build/**'
+    ];
+
+    // using base = '.' will transfer everything to /public_html correctly
+    // turn off buffering in gulp.src for best performance
+
+    gulp.src( globs, { base: './build/', buffer: false } )
+        .pipe( conn.newer( '/site/wwwroot' ) ) // only upload newer files
+        .pipe( conn.dest( '/site/wwwroot' ) );
+
+    //del(config.temp);
+    notify(msg);
 });
 
 /**

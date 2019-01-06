@@ -53,7 +53,7 @@
                                on-select="vm.addUserToRole($item)"
                                on-remove="vm.removeUserFromRole($item)">
                         <ui-select-match placeholder="Select user...">{{$item.FirstName}} {{$item.LastName}}</ui-select-match>
-                        <ui-select-choices repeat="user in vm.allUsers | filter:$select.search">
+                        <ui-select-choices repeat="user in vm.allUsers | filter:$select.search : limitTo:10">
                             {{user.FirstName}} {{user.LastName}} ({{user.UserName}})
                         </ui-select-choices>
                     </ui-select>

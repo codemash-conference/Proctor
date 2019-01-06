@@ -32,7 +32,7 @@
 
         function gotoHome()
         {
-            $state.go('home');
+            $state.go('myschedule');
         }
     }
 })();

@@ -50,6 +50,7 @@
                         var room = session.Rooms[0] ? session.Rooms[0].name : '';
                         return session.SessionType.Name === 'General Session' ||
                             session.SessionType.Name === 'Pre-Compiler' ||
+                            session.SessionType.Name === 'PreCompiler' ||
                             session.SessionType.Name === 'Static Session' ||
                             session.SessionType.Name === 'Sponsor Session' ||
                             room === 'Guava' || room === 'Tamarind';
@@ -69,14 +70,15 @@
                                         return a.Id === assignee.Id;
                                     });
                                 });
-
+                                var collisionSession = null;
                                 var collision = _.find(assigneeSchedule, function(session2){
                                     if(session.Id === session2.Id){ return false; }
                                     var sessionRange1 = moment.range(session.SessionStartTime, session.SessionEndTime);
                                     var sessionRange2 = moment.range(session2.SessionStartTime, session2.SessionEndTime);
+                                    if (sessionRange1.overlaps(sessionRange2)) {collisionSession = session2;}
                                     return sessionRange1.overlaps(sessionRange2);
                                 });
-                                if(collision) {
+                                if(collision && session.volunteersRequired !== 99 && collisionSession.volunteersRequired !== 99) {
                                     hasCollision = true;
                                 }
 
@@ -109,6 +111,11 @@
         function getCardState(session) {
             if(session.hasCollisions()){
                 return 'error';
+            }
+
+            if(session.VolunteersRequired === 99)
+            {
+                return 'ok';
             }
 
             if(session.VolunteersRequired === 0 && session.Assignees.length > 0)
