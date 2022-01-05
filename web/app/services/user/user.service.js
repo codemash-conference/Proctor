@@ -25,6 +25,7 @@
             getAllUsers: getAllUsers,
             getUserById:getUserById,
             createUser: createUser,
+            register: register,
             updateUser: updateUser,
             deleteUser: deleteUser,
             addUserToRole : addUserToRole,
@@ -92,6 +93,16 @@
 
         }
 
+        function register(user) {
+            var apiUrl = config.apiUrl + '/api/register';
+            user.UserName = user.Email; //Make the username the email address
+            return $http.post(apiUrl, user)
+                .then(function(response){
+                    return response;
+                });
+
+        }
+
         function updateUser(user) {
             var apiUrl = config.apiUrl + '/api/Users/' + user.Id;
 
@@ -132,7 +143,14 @@
                 password: '',
                 userName: '',
                 EmailConfirmed: true,
-                IsActive: true
+                IsActive: true,
+                Gender: '',
+                School: '',
+                Major: '',
+                TopicsInterestedIn: '',
+                Essay: '',
+                PreviousVolunteer: false,
+                VolunteerYears: 0
             };
         }
     }

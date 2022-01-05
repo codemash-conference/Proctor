@@ -109,13 +109,14 @@
         }
 
         function getCardState(session) {
-            if(session.hasCollisions()){
-                return 'error';
-            }
 
             if(session.VolunteersRequired === 99)
             {
                 return 'ok';
+            }
+
+            if(session.hasCollisions()){
+                return 'error';
             }
 
             if(session.VolunteersRequired === 0 && session.Assignees.length > 0)

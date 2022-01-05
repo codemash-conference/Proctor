@@ -41,7 +41,7 @@
                             <th>Rooms</th>
                             <th>Title</th>
                             <th>SessionType</th>
-                            <th>assignees</th>
+                            <th>SessionizeSessionId</th>
                             <th>proctorCheckInTime</th>
                             <th>sessionStartTime</th>
                             <th>sessionEndTime</th>
@@ -52,19 +52,19 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="session in vm.sessions">
-                            <td>{{session.id}}</td>
-                            <td>{{session.sessionStartTime | date:'M/d h:mm a' }}</td>
-                            <td>{{session.sessionEndTime | date:'M/d h:mm a'}}</td>
-                            <td>{{session.rooms}}</td>
-                            <td>{{session.title}}</td>
-                            <td>{{session.sessionType}}</td>
-                            <td>{{session.assignees}}</td>
-                            <td>{{session.proctorCheckInTime}}</td>
-                            <td>{{session.actualSessionStartTime}}</td>
-                            <td>{{session.actualSessionEndTime}}</td>
-                            <td>{{session.attendees10}}</td>
-                            <td>{{session.attendees50}}</td>
-                            <td>{{session.notes}}</td>
+                            <td>{{session.Id}}</td>
+                            <td>{{session.SessionStartTime | date:'M/d h:mm a' }}</td>
+                            <td>{{session.SessionEndTime | date:'M/d h:mm a'}}</td>
+                            <td>{{session.Rooms}}</td>
+                            <td>{{session.Title}}</td>
+                            <td>{{session.SessionType}}</td>
+                            <td>{{session.SessionAlternateId}}</td>
+                            <td>{{session.ProctorCheckInTime}}</td>
+                            <td>{{session.ActualSessionStartTime}}</td>
+                            <td>{{session.ActualSessionEndTime}}</td>
+                            <td>{{session.Attendees10}}</td>
+                            <td>{{session.Attendees50}}</td>
+                            <td>{{session.Notes}}</td>
                         </tr>
                         </tbody>
                     </table>

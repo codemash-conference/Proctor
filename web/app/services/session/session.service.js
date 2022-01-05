@@ -22,7 +22,8 @@
             getRooms: getRooms,
             addUserToSession: addUserToSession,
             removeUserFromSession: removeUserFromSession,
-            getSessionResults: getSessionResults
+            getSessionResults: getSessionResults,
+            updateSessionInfo: updateSessionInfo
         };
 
         return service;
@@ -158,6 +159,15 @@
             var apiUrl = config.apiUrl + '/api/Sessions/Results';
 
             return $http.get(apiUrl)
+                .then(function(response){
+                    return response.data;
+                });
+        }
+
+        function updateSessionInfo() {
+            var apiUrl = config.apiUrl + '/api/Sessions/Update';
+
+            return $http.put(apiUrl)
                 .then(function(response){
                     return response.data;
                 });

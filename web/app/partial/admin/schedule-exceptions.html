@@ -68,10 +68,10 @@
                                     <button class="btn btn-default btn-xs" ng-click="vm.updateException(exception)"><i class="fa fa-pencil"></i></button>
                                 </div>
                             </td>
-                            <td>{{ exception.lastName }}</td>
-                            <td>{{ exception.firstName }}</td>
-                            <td>{{ exception.startTime | date:'short'}}</td>
-                            <td>{{ exception.endTime | date:'short' }}</td>
+                            <td>{{ exception.User.LastName }}</td>
+                            <td>{{ exception.User.FirstName }}</td>
+                            <td>{{ exception.StartTime | date:'short'}}</td>
+                            <td>{{ exception.EndTime | date:'short' }}</td>
 
                         </tr>
                         </tbody>

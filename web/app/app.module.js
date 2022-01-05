@@ -28,12 +28,12 @@
              logger.log(fromState);
              logger.log(fromParams);
              */
-            if (angular.isObject(toState) && toState.name) {
-                if(toState.name !== "login" && !localStorageService.get('loggedIn')){
-                    e.preventDefault();
-                    $state.go("login");
-                }
-            }
+            // if (angular.isObject(toState) && toState.name) {
+            //     if(toState.name !== "login" && !localStorageService.get('loggedIn')){
+            //         e.preventDefault();
+            //         $state.go("login");
+            //     }
+            // }
         });
     });
 })();

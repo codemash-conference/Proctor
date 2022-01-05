@@ -1,0 +1,106 @@
+<div class="modal-header">
+    <div>
+        <h3 class="modal-title pull-left">Apply to be a CodeMash Volunteer!</h3>
+    </div>
+    <div class="pull-right" ng-click="vm.cancel()">
+        <i class="fas fa-times fa-2x" style="color: #FFFFFF;" aria-hidden="true"></i>
+    </div>
+</div>
+
+<div class="modal-body">
+    <div class="panel panel-filled">
+        <div class="panel-body">
+            <div class="row">
+                <div class="form-group col-lg-6">
+                    <label>First Name</label>
+                    <input type="text" value="" ng-model="vm.user.FirstName" id="firstName" class="form-control" name="">
+                    <span class="help-block small">First name</span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label>Last Name</label>
+                    <input type="text" value="" ng-model="vm.user.LastName" id="lastName" class="form-control" name="">
+                    <span class="help-block small">Last name</span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label>Email Address</label>
+                    <input type="" value="" ng-model="vm.user.Email" id="email" class="form-control" name="">
+                    <span class="help-block small">Your address email to contact</span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label>Cell Number</label>
+                    <input type="" value="" ng-model="vm.user.CellNumber" id="cellNumber" class="form-control" name="">
+                    <span class="help-block small">Your cell number to contact.  Use the format 555-555-5555</span>
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label>Gender (Used for bunking purposes only)</label>
+                    <select type="" value="" ng-model="vm.user.Gender" id="gender" class="form-control" name="">
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                    </select>
+                    <span class="help-block small">Your gender</span>
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label>School</label>
+                    <input type="" value="" ng-model="vm.user.School" id="school" class="form-control" name="">
+                    <span class="help-block small">The school you attend(ed)</span>
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label>Major</label>
+                    <input type="" value="" ng-model="vm.user.Major" id="major" class="form-control" name="">
+                    <span class="help-block small">Your major</span>
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label>Topics Interested In</label>
+                    <input type="" value="" ng-model="vm.user.TopicsInterestedIn" id="topicsInterestedIn" class="form-control" name="">
+                    <span class="help-block small">Topics Interested In</span>
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <label>Have you been a CodeMash Volunteer in the past?</label>
+                    <input type="checkbox" value="" ng-model="vm.user.PreviousVolunteer" id="previousVolunteer" class="form-control" name="">
+                    <span class="help-block small"></span>
+                </div>
+
+                <div class="form-group col-lg-6" ng-if="vm.user.PreviousVolunteer">
+                    <label>How many years?</label>
+                    <select type="" value="" ng-model="vm.user.VolunteerYears" id="volunteerYears" class="form-control" name="">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                    </select>
+                    <span class="help-block small">Years volunteered</span>
+                </div>
+
+                <div class="form-group col-lg-6" ng-if="!vm.user.PreviousVolunteer">
+                    <label>Why do you want to attend CodeMash and what do you expect to get out of it?</label>
+                    <input type="" value="" ng-model="vm.user.Essay" id="essay" class="form-control" name="">
+                    <span class="help-block small">(200-300 words)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-default pull-left btn-hh-std" type="button" ng-click="vm.cancel()">
+        Cancel
+    </button>
+    <button class="btn btn-accent pull-right btn-hh-std" type="button" ng-click="vm.submit()">
+        Ok
+    </button>
+</div>

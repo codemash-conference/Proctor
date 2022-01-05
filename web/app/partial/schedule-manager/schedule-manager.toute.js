@@ -16,7 +16,7 @@
                         level: 0,
                         ordinal: 4,
                         content: 'Schedule Manager',
-                        rolesAllowed: ['Admin']
+                        rolesAllowed: []
                     }
                 })
                 .state('schedulemanager.manage', {
@@ -30,7 +30,7 @@
                         level: 1,
                         ordinal: 1,
                         content: 'Manage',
-                        rolesAllowed: ['Admin']
+                        rolesAllowed: []
                     }
                 })
                 .state('schedulemanager.pending', {

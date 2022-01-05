@@ -21,8 +21,9 @@
     var config = {
         appErrorPrefix: '[Error] ',
         appTitle: 'Proctor',
-        apiUrl: 'http://localhost:54546'
-        //apiUrl: 'https://cmprod-volunteers-api.azurewebsites.net'
+        //apiUrl: 'http://localhost:54546'
+        //apiUrl: 'https://cmprod-volunteers-api-dev.azurewebsites.net'
+        apiUrl: 'https://cmprod-volunteers-api.azurewebsites.net'
     };
 
 

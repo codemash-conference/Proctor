@@ -12,7 +12,7 @@
             oldPassword : '',
             newPassword : '',
             newPasswordConfirm : '',
-            userId : user.id
+            userId : user.Id
         };
         vm.ok = ok;
         vm.cancel = cancel;

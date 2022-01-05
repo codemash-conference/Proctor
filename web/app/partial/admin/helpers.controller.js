@@ -14,11 +14,19 @@
         vm.dates = [];
 
         vm.getSessionsForRoomAndDate = getSessionsForRoomAndDate;
+        vm.updateSessionInfo = updateSessionInfo;
         activate();
 
 
         function activate() {
-            getSessions();
+
+            //getSessions();
+        }
+
+        function updateSessionInfo() {
+            sessionService.updateSessionInfo().then(function (data) {
+                alert('Completed');
+            });
         }
 
         function getSessions() {

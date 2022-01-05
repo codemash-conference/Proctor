@@ -28,9 +28,9 @@
                 <div ng-repeat="(date,sessions) in vm.schedule.sessions">
                     <div class="scheduleDateHeader">{{date}}</div>
                     <div class="scheduleSession" ng-repeat="session in sessions">
-                        <div class="scheduleTime">{{session.sessionStartTime | date:'h:mm a'}} to {{session.sessionEndTime | date:'h:mm a'}}</div>
+                        <div class="scheduleTime">{{session.SessionStartTime | date:'h:mm a'}} to {{session.SessionEndTime | date:'h:mm a'}}</div>
                         <div class="scheduleTitle">
-                            {{session.title}}
+                            {{session.Title}} <a ng-if="session.VolunteersRequired !== 99" href="javascript:void(0)" ng-click="vm.switchSession(session)">[Switch]</a>
                         </div>
                     </div>
                 </div>

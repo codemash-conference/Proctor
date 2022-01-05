@@ -23,31 +23,31 @@
         activate();
 
         function activate() {
-            vm.startTimeRaw = moment(vm.exception.startTime).toDate();
-            vm.endTimeRaw = moment(vm.exception.endTime).toDate();
+            vm.startTimeRaw = moment(vm.exception.StartTime).toDate();
+            vm.endTimeRaw = moment(vm.exception.EndTime).toDate();
             getUsers();
         }
 
         function getUsers() {
             userService.getAllUsers().then(function (data) {
                 vm.users = _.sortBy(data, function (user) {
-                    return user.lastName + ', ' + user.firstName;
+                    return user.LastName + ', ' + user.FirstName;
                 });
-                if(vm.exception.userId !== null)
+                if(vm.exception.UserId !== null)
                 {
                     vm.selectedUser = _.find(vm.users, function (user) {
-                        return user.id === vm.exception.userId;
+                        return user.Id === vm.exception.UserId;
                     });
                 }
             });
         }
         function ok() {
             //TODO: Validation
-            vm.exception.firstName = vm.selectedUser.firstName;
-            vm.exception.lastName = vm.selectedUser.lastName;
-            vm.exception.userId = vm.selectedUser.id;
-            vm.exception.startTime = moment(vm.startTimeRaw).format("M/D/YYYY hh:mm a");
-            vm.exception.endTime = moment(vm.endTimeRaw).format("M/D/YYYY hh:mm a");
+            vm.exception.FirstName = vm.selectedUser.FirstName;
+            vm.exception.LastName = vm.selectedUser.LastName;
+            vm.exception.UserId = vm.selectedUser.Id;
+            vm.exception.StartTime = moment(vm.startTimeRaw).format("M/D/YYYY hh:mm a");
+            vm.exception.EndTime = moment(vm.endTimeRaw).format("M/D/YYYY hh:mm a");
 
             if(isAdd){
                 scheduleExceptionService.createException(vm.exception).then(function (response) {
@@ -56,11 +56,11 @@
             }
             else {
                 scheduleExceptionService.updateException(vm.exception).then(function (response) {
-                        vm.exceptionOrig.firstName = vm.exception.firstName;
-                        vm.exceptionOrig.lastName = vm.exception.lastName;
-                        vm.exceptionOrig.userId = vm.exception.userId;
-                        vm.exceptionOrig.startTime = vm.exception.startTime;
-                        vm.exceptionOrig.endTime = vm.exception.endTime;
+                        vm.exceptionOrig.FirstName = vm.exception.FirstName;
+                        vm.exceptionOrig.LastName = vm.exception.LastName;
+                        vm.exceptionOrig.UserId = vm.exception.UserId;
+                        vm.exceptionOrig.StartTime = vm.exception.StartTime;
+                        vm.exceptionOrig.EndTime = vm.exception.EndTime;
                         $uibModalInstance.close();
                     },
                     function (response) {

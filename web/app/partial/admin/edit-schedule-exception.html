@@ -31,9 +31,9 @@
                     </div>
                     <div class="form-group col-lg-6">
                         <ui-select ng-model="vm.selectedUser" theme="bootstrap">
-                            <ui-select-match placeholder="Select user">{{$select.selected.lastName}}, {{$select.selected.firstName}}</ui-select-match>
+                            <ui-select-match placeholder="Select user">{{$select.selected.LastName}}, {{$select.selected.FirstName}}</ui-select-match>
                             <ui-select-choices repeat="user in vm.users | filter: $select.search">
-                                <div ng-bind-html="user.lastName + ', ' + user.firstName | highlight: $select.search"></div>
+                                <div ng-bind-html="user.LastName + ', ' + user.FirstName | highlight: $select.search"></div>
                             </ui-select-choices>
                         </ui-select>
                     </div>
