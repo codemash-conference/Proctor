@@ -142,7 +142,23 @@
                         content: 'Schedule Exceptions',
                         rolesAllowed: ['Admin']
                     }
-                });
+                })
+                .state('admin.scheduleAdminV2', {
+                    url: '/scheduleadminv2',
+                    templateUrl: 'app/partial/admin/scheduleadminv2.html',
+                    controller: 'ScheduleAdminV2Controller',
+                    controllerAs: 'vm',
+                    title: 'Schedule Admin V2',
+                    resolve: {},
+                    settings: {
+                        mainNavigation: true,
+                        level: 1,
+                        ordinal: 3,
+                        content: 'Schedule Admin V2',
+                        rolesAllowed: ['Admin']
+                    }
+            })
+            ;
         });
 
 })();

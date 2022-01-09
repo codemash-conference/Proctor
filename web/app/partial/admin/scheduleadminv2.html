@@ -1,0 +1,129 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="view-header">
+            <div class="pull-right text-right" style="line-height: 14px">
+            </div>
+            <div class="header-icon">
+                <i class="pe page-header-icon pe-7s-date"></i>
+            </div>
+            <div class="header-title">
+                <h3>Schedule Admin</h3>
+                <small>
+                    Administer the schedule
+                </small>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-filled">
+            <div class="panel-heading">
+                <div panel-tools></div>
+                Schedule Admin Tools
+            </div>
+            <div class="panel-body">
+                <button class="btn btn-accent" ng-click="vm.importFeed()">Import Feed</button>
+                <button class="btn btn-accent" ng-click="vm.autoAssign()">Auto Assign</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-filled">
+            <div class="panel-heading">
+                <div panel-tools></div>
+                Schedule Admin
+            </div>
+            <div class="panel-body">
+
+                <div class="guide-date-container">
+                    <div class="guide-date" ng-repeat="d in vm.dateRoomSessions | orderBy: 'rawStartDate'" ng-class="{'selected': vm.currentDate.formattedDate === d.formattedDate }"
+                         ng-click="vm.selectDate(d)">
+                        <div class="guide-date-day">{{d.rawStartDate | date : 'EEE'}}</div>
+                        <div class="guide-date-num">{{d.rawStartDate | date : 'd'}}</div>
+                    </div>
+                </div>
+
+                <div ng-repeat="cDate in vm.dateRoomSessions | filter : { formattedDate: vm.currentDate.formattedDate }" style="position: relative">
+                    <div class="guide-container">
+                        <div class="text-center guide-header-container">
+                            <div class="guide-date2">
+                                {{cDate.rawStartDate | date : 'M/d'}}
+                            </div>
+                            <div ng-repeat="room in cDate.rooms | orderBy: 'roomString'"
+                                 class="guide-display-header" ng-style="vm.getRoomRowHeight(room)">
+                                {{room.roomString}}
+                            </div>
+                        </div>
+                        <div class="guide-times-container">
+                            <div ng-repeat="t in vm.times" class="guide-times">
+                                {{t}}
+                            </div>
+                            <div ng-repeat="room in cDate.rooms | orderBy: 'roomString'"
+                                 class="guide-playlist-container"
+                                 ng-style="vm.getRoomRowHeight(room)">
+                                <div ng-if="room.sessions.length === 0" style="padding: 5px">
+                                    No Scheduled Sessions Found
+                                </div>
+
+                                <div ng-repeat="session in room.sessions" class="guide-playlist"
+                                     ng-style="vm.getSessionPosition(session)"
+                                     ng-click="vm.editSessionAssignee(session)"
+                                     ng-class="vm.getCardState(session)"
+                                >
+                                    <div style="position: relative">
+                                        <div style="position: absolute;
+                                                    top: 0;
+                                                    cursor: pointer;
+                                                    text-overflow: ellipsis;
+                                                    overflow: hidden"
+                                             ng-style="vm.getTextPosition(session)"
+                                             uib-tooltip-template="'myTooltipTemplate.html'"
+                                             tooltip-popup-close-delay="0"
+                                             tooltip-append-to-body="true"
+                                             tooltip-class="guide-tooltip"
+                                             tooltip-placement="top-left"
+                                        >
+                                            {{session.Title}} - {{session.rawStartDate | date : 'shortTime'}} to {{session.rawEndDate | date : 'shortTime'}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="myTooltipTemplate.html">
+    <div style="">
+        <div style="text-align: left; background-color:#f6a821; color: #ffffff; height: 30px; font-size: 18px; padding: 2px 10px;">
+            {{ session.Title }} (Id: {{session.Id}})
+        </div>
+        <div style="padding: 10px">
+            <div>
+                Start Time: {{session.rawStartDate | date : 'shortTime'}}
+            </div>
+            <div>
+                End Time: {{session.rawEndDate | date : 'shortTime'}}
+            </div>
+            <hr>
+            <div>
+                Volunteers Assigned: ({{session.Assignees.length}} of {{session.VolunteersRequired}})<br>
+                <span ng-repeat="proctor in session.Assignees" style="display: inline-block; margin: 2px; padding: 2px 5px; border-radius: 3px; border: 1px solid #666666">
+                    {{proctor.FirstName}} {{proctor.LastName}}
+                </span>
+            </div>
+        </div>
+    </div>
+</script>

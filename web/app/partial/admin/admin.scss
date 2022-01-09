@@ -68,3 +68,144 @@
     padding-left: 20px;
 }
 
+.guide-date-container {
+    text-align: center; }
+
+.guide-date {
+    text-align: center;
+    width: 40px;
+    height: 48px;
+    border: 1px solid #f6a821;
+    border-radius: 2px;
+    background-color: transparent;
+    display: inline-block;
+    color: #f6a821;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.guide-date.selected {
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    background-color: #f6a821; }
+
+.guide-date-day {
+    padding-top: 1px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: -12px;
+}
+
+.guide-date-num {
+    padding-top: 5px;
+    font-weight: bold;
+    font-size: 25px;
+}
+/*
+orange: #f6a821
+white: #FFFFFF
+Gray: #949ba2
+*/
+
+.guide-container {
+    border: #CCCCCC solid 1px;
+    margin-top: 20px;
+     }
+
+.guide-header-container {
+    display: block;
+    width: 160px;
+    float: left; }
+
+.guide-date2 {
+    height: 40px;
+    padding-top: 10px;
+    border-right: 2px solid #767676; }
+
+.guide-display-header {
+    font-weight: bold;
+    height: 100px;
+    border-top: 2px solid #767676;
+    border-right: 2px solid #767676;
+    padding-top: 10px; }
+
+.guide-display-header:nth-child(even) {
+    background-color: #000000;
+}
+
+.guide-times-container {
+    display: block;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.guide-times-container::-webkit-scrollbar {
+    height: 8px;
+    color: #767676; }
+
+.guide-times-container::-webkit-scrollbar-track {
+    border: initial;
+    background: transparent; }
+
+.guide-times-container::-webkit-scrollbar-thumb {
+    background-color: #767676;
+    border-color: #767676;
+    border-radius: 5px; }
+
+.guide-times {
+    display: inline-block;
+    height: 40px;
+    padding-top: 10px;
+    width: 200px; }
+
+.guide-playlist-container {
+    font-weight: bold;
+    width: 9600px;
+    height: 100px;
+    border-top: 2px solid #767676;
+    position: relative; }
+
+.guide-playlist-container:nth-child(odd) {
+    background-color: #000000; }
+
+.guide-playlist {
+    position: absolute;
+    background-color: #0C84A9;
+    border-radius: 3px;
+    border: 1px solid #000000;
+
+    color: #000000;
+    padding: 2px 7px;
+    overflow: hidden;
+    height: 25px; }
+
+.guide-playlist.error{
+    background-color: #a94442;
+}
+
+.guide-playlist.ok{
+    background-color: green;
+}
+
+.tooltip.guide-tooltip .tooltip-inner{
+    color: #FFFFFF;
+    background-color: #000000;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    min-width: 350px;
+    text-align: left;
+    padding: 0;
+    border-radius: 10px;
+}
+
+/*
+.scheduleAdminSession {
+    width: 80px;
+    font-size: 8pt;
+    border: solid 1px #000;
+    position: absolute;
+    background-color: #0C84A9;
+    overflow: hidden;
+    cursor: pointer;
+    color: black;
+}
+*/
