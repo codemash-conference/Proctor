@@ -10,6 +10,8 @@
         var vm = this;
         vm.title = 'User';
         vm.users = [];
+        vm.filter = '';
+        vm.filterUsers = filterUsers;
 
         activate();
 
@@ -33,6 +35,16 @@
                     });
                 }
             });
+        }
+
+        function filterUsers(){
+            return function (row, idx) {
+                var show = false;
+                if(row.FirstName.toLowerCase().includes(vm.filter.toLowerCase()) || row.LastName.toLowerCase().includes(vm.filter.toLowerCase())){
+                    show = true;
+                }
+                return show;
+            };
         }
     }
 })();

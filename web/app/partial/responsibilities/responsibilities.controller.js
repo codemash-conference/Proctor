@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular
         .module('app.partial')
         .controller('ResponsibilitiesController', ResponsibilitiesController);

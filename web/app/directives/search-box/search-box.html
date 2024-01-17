@@ -1,0 +1,15 @@
+<p class="hh-search" style="position: relative">
+    <span class="" style="position: absolute;top:7px; left: 10px;">
+        <i class="fa fa-search"></i>
+    </span>
+    <span class="" style="position: absolute;top:7px; right: 10px;" ng-click="vm.filter=''">
+        <i class="fa fa-times"></i>
+    </span>
+
+    <input type="text"
+           placeholder="{{vm.watermarkText || 'Search...'}}"
+           class="form-control"
+           ng-model="vm.filter"
+           style="padding-left: 30px"
+    >
+</p>

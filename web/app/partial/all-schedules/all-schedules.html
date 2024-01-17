@@ -16,8 +16,13 @@
         <hr>
     </div>
 </div>
+<div class="row">
+    <div class="col-xs-12">
+        <search-box filter="vm.filter" watermark-text="'Search...'"></search-box>
+    </div>
+</div>
 
-<div class="row" ng-repeat="user in vm.users | orderBy:'LastName'">
+<div class="row" ng-repeat="user in vm.users | filter:vm.filterUsers() | orderBy:'LastName'">
     <div class="col-xs-12">
         <div class="panel panel-filled">
             <div class="panel-heading">

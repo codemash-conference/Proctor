@@ -5,6 +5,7 @@
         .module('app.partial')
         .controller('ScheduleAdminV2Controller', ScheduleAdminV2Controller);
     /* jshint -W071 */
+    /* jshint -W117 */
     function ScheduleAdminV2Controller($q, sessionService, logger, moment,
                                        $uibModal, roleService, $timeout, $scope) {
         var vm = this;
@@ -17,6 +18,7 @@
         vm.times = [];
         vm.dateRoomSessions = [];
         vm.scrollPosition = 0;
+
 
         vm.importFeed = importFeed;
         vm.autoAssign = autoAssign;
@@ -159,7 +161,7 @@
                                 if (sessionRange1.overlaps(sessionRange2)) {collisionSession = session2;}
                                 return sessionRange1.overlaps(sessionRange2);
                             });
-                            if(collision && session.volunteersRequired !== 99 && collisionSession.volunteersRequired !== 99) {
+                            if(collision && session.VolunteersRequired !== 99 && collisionSession.VolunteersRequired !== 99) {
                                 hasCollision = true;
                             }
 

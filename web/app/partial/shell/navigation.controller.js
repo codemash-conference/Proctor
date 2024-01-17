@@ -6,18 +6,23 @@
         .module('app.partial')
         .controller('NavigationController', NavigationController);
 
-    function NavigationController($scope, $state, userService, $rootScope) {
+    function NavigationController($scope, $state, userService, $rootScope, authService) {
         var vm = this;
         var states = $state.get();
         vm.isCurrent = isCurrent;
         vm.menuSelect = menuSelect;
         vm.isSelected = isSelected;
+        vm.logout = logout;
         vm.evnt = {};
         vm.navSelected = '';
+        vm.userName = '';
+        vm.loggedIn = false;
 
         activate();
 
         function activate() {
+            vm.userName = userService.user().username;
+            vm.loggedIn = userService.user().loggedIn;
             getNavRoutes();
             bindEvents();
         }
@@ -96,6 +101,11 @@
             if (vm.evnt.navRefresh) {
                 vm.evnt.navRefresh();
             }
+        }
+
+        function logout() {
+            authService.logOut();
+            $state.go("login");
         }
 
         $scope.$on('globalStyles:changed', function (event, newVal) {

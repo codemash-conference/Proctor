@@ -21,7 +21,15 @@
                     </li>
                 </ul>
             </li>
+            <li class="">
+                <a ui-sref="login">
+                    <span ng-if="!vm.loggedIn">Log in</span>
 
+                    <div ng-if="vm.loggedIn" class="" ng-click="vm.logout()">
+                        Logout
+                    </div>
+                </a>
+            </li>
         </ul>
     </nav>
 </aside>

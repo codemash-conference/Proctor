@@ -67,6 +67,7 @@
             })
                 .result.then(function(newException) {
                 vm.exceptions.push(newException);
+                getExceptions();
                 logger.success('Exception Added', 'Success');
             });
 
@@ -86,6 +87,7 @@
                 }
             })
                 .result.then(function() {
+                getExceptions();
                 logger.success('Exception Updated', 'Success');
             });
         }

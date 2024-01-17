@@ -78,7 +78,7 @@
                                     if (sessionRange1.overlaps(sessionRange2)) {collisionSession = session2;}
                                     return sessionRange1.overlaps(sessionRange2);
                                 });
-                                if(collision && session.volunteersRequired !== 99 && collisionSession.volunteersRequired !== 99) {
+                                if(collision && session.VolunteersRequired !== 99 && collisionSession.VolunteersRequired !== 99) {
                                     hasCollision = true;
                                 }
 

@@ -102,7 +102,7 @@
 
         function deleteSession(session) {
             messageBox.confirmDialog('Delete Session', 'Are you sure you want to delete this session?', function () {
-                sessionService.deleteSession(session.id).then(function (response) {
+                sessionService.deleteSession(session.Id).then(function (response) {
                     logger.success("Session deleted");
                     getStaticSessions();
                 });

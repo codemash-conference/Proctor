@@ -24,7 +24,7 @@
         }
 
         function updateSessionInfo() {
-            sessionService.updateSessionInfo().then(function (data) {
+            sessionService.cancelSessions().then(function (data) {
                 alert('Completed');
             });
         }

@@ -45,7 +45,7 @@
             //TODO: Validation
             vm.exception.FirstName = vm.selectedUser.FirstName;
             vm.exception.LastName = vm.selectedUser.LastName;
-            vm.exception.UserId = vm.selectedUser.Id;
+            vm.exception.User_Id = vm.selectedUser.Id;
             vm.exception.StartTime = moment(vm.startTimeRaw).format("M/D/YYYY hh:mm a");
             vm.exception.EndTime = moment(vm.endTimeRaw).format("M/D/YYYY hh:mm a");
 

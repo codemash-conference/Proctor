@@ -23,7 +23,8 @@
             addUserToSession: addUserToSession,
             removeUserFromSession: removeUserFromSession,
             getSessionResults: getSessionResults,
-            updateSessionInfo: updateSessionInfo
+            updateSessionInfo: updateSessionInfo,
+            cancelSessions: cancelSessions
         };
 
         return service;
@@ -166,6 +167,15 @@
 
         function updateSessionInfo() {
             var apiUrl = config.apiUrl + '/api/Sessions/Update';
+
+            return $http.put(apiUrl)
+                .then(function(response){
+                    return response.data;
+                });
+        }
+
+        function cancelSessions() {
+            var apiUrl = config.apiUrl + '/api/Sessions/UpdateFromFeed';
 
             return $http.put(apiUrl)
                 .then(function(response){

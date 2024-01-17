@@ -4,12 +4,12 @@
             <div class="pull-right text-right" style="line-height: 14px">
             </div>
             <div class="header-icon">
-                <i class="pe page-header-icon pe-7s-map"></i>
+                <i class="pe page-header-icon pe-7s-help1"></i>
             </div>
             <div class="header-title">
-                <h3>Map</h3>
+                <h3>FAQ</h3>
                 <small>
-                    Where am I?
+                    Frequently Asked Questions
                 </small>
             </div>
         </div>
@@ -19,17 +19,23 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <div class="panel panel-filled">
-            <div class="panel-heading">
-                <div panel-tools></div>
-                Map
-            </div>
-            <div class="panel-body">
-                <img width="100%" src="../images/KalahariMap24.png">
-            </div>
-        </div>
-
+        <search-box filter="vm.filter" watermark-text="'Search...'"></search-box>
     </div>
 </div>
 
+<div class="row" ng-repeat="faq in vm.faqs | filter:vm.filter | orderBy:'Ordinal'">
+    <div class="col-xs-12">
+        <div class="panel panel-filled">
+            <div class="panel-heading">
+                <div panel-tools></div>
+                {{faq.Question}}
+            </div>
+            <div class="panel-body">
+                <div>
+                    {{faq.Answer}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
