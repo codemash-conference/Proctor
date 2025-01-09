@@ -22,8 +22,8 @@
         appErrorPrefix: '[Error] ',
         appTitle: 'Proctor',
         //apiUrl: 'http://localhost:54546'
-        //apiUrl: 'https://cmprod-volunteers-api-dev.azurewebsites.net'
-        apiUrl: 'https://cmprod-volunteers-api.azurewebsites.net'
+        apiUrl: 'http://codemashweb:3011'
+        //apiUrl: 'https://cmprod-volunteers-api.azurewebsites.net'
     };
 
 
