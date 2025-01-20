@@ -21,8 +21,8 @@
     var config = {
         appErrorPrefix: '[Error] ',
         appTitle: 'Proctor',
-        //apiUrl: 'http://localhost:54546'
-        apiUrl: 'http://codemashweb:3011'
+        apiUrl: 'http://localhost:54546'
+        //apiUrl: 'http://codemashweb:3011'
         //apiUrl: 'https://cmprod-volunteers-api.azurewebsites.net'
     };
 

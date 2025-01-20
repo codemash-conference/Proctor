@@ -43,7 +43,8 @@
                             session.SessionType.Name === 'Pre-Compiler' ||
                             session.SessionType.Name === 'PreCompiler' ||
                             session.SessionType.Name === 'Static Session' ||
-                            session.SessionType.Name === 'Sponsor Session' ;
+                            session.SessionType.Name === 'Sponsor Session' ||
+                            session.SessionType.Name === 'Bytesized Breakouts';
                     })
                     .filter(function(session) {
                         return moment(session.SessionStartTime).format("MM/DD/YYYY") === moment().format("MM/DD/YYYY");//'01/12/2018';

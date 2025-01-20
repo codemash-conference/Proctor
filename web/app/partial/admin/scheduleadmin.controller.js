@@ -53,7 +53,7 @@
                             session.SessionType.Name === 'PreCompiler' ||
                             session.SessionType.Name === 'Static Session' ||
                             session.SessionType.Name === 'Sponsor Session' ||
-                            room === 'Guava' || room === 'Tamarind';
+                            session.SessionType.Name === 'Bytesized Breakouts';
                     })
                     .sortBy(function(session) { return session.SessionStartTime; })
                     .forEach(function(session) {
